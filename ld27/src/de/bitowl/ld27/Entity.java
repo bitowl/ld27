@@ -56,7 +56,7 @@ public class Entity {
 	}
 	
 	// HEAVY collision code ^^
-	// simple test everything on everything and everyone is happy
+	// simply test everything on everything and everyone is happy
 	public void update(float pDelta){
 		
 		// precalculate
@@ -86,14 +86,14 @@ public class Entity {
 			
 	
 			if(speedY>0){
-				if(upleft==0 && upright == 0){
+				if(isFree(upleft) && isFree(upright)){
 					y=newY;
 				}else{
 					y= (ytile+1)*level.tileHeight-height;
 					hitWall(false);
 				}
 			}else if(speedY<0){
-				if(downleft==0 && downright ==0){
+				if(isFree(downleft)&& isFree(downright)){
 					y=newY;
 				}else{
 					y= (ytile+1)*level.tileHeight+1;
@@ -121,14 +121,14 @@ public class Entity {
 			
 			
 			if(speedX<0){
-				if(downleft == 0 && upleft ==0){
+				if(isFree(downleft) && isFree(upleft) ){
 					x = newX;
 				}else{
 					x=(xtile+1)*level.tileWidth;
 					hitWall(true);
 				}
 			}else{
-				if(downright==0 && upright==0){
+				if(isFree(downright) && isFree(upright) ){
 					x = newX;
 				}else{
 					x=(xtile+1)*level.tileWidth-width-1;
@@ -149,6 +149,14 @@ public class Entity {
 	}
 	
 	int upleft,downleft,upright,downright;
+	
+	public boolean isFree(int pTile){
+		if(this instanceof Bullet){
+			return pTile!=1;
+		}else{
+			return pTile==0;
+		}
+	}
 	
 	public void getMyCorners(float pX,float pY){
 		// calculate on which tiles our "edges" are

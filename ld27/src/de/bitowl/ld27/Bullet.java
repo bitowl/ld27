@@ -15,6 +15,7 @@ public class Bullet extends Entity{
 	float nextSpeedY;
 	
 	Mirror lastMirror;
+	float lastMirrorCooldown;
 	
 	public Bullet(float pX,float pY,float pSpeedX,float pSpeedY){
 		x=pX;
@@ -38,6 +39,13 @@ public class Bullet extends Entity{
 	
 	@Override
 	public void update(float pDelta) {
+		if(lastMirror!=null){
+			if(lastMirrorCooldown>0){
+				lastMirrorCooldown-=pDelta;
+			}else{
+				lastMirror=null;
+			}
+		}
 		if(nextSpeedX!=0){
 			speedX=nextSpeedX;
 			nextSpeedX=0;
@@ -72,6 +80,7 @@ public class Bullet extends Entity{
 								speedY=speedX;
 								speedX=tmp;
 								lastMirror=mirror;
+								lastMirrorCooldown=0.4f;
 							}
 						}
 					}
@@ -89,6 +98,7 @@ public class Bullet extends Entity{
 								speedY=-speedX;
 								speedX=-tmp;
 								lastMirror=mirror;
+								lastMirrorCooldown=0.4f;
 							}
 						}
 					}
@@ -107,6 +117,7 @@ public class Bullet extends Entity{
 								speedY=-speedX;
 								speedX=-tmp;
 								lastMirror=mirror;
+								lastMirrorCooldown=0.4f;
 							}
 						}
 					}
@@ -124,6 +135,7 @@ public class Bullet extends Entity{
 								speedY=speedX;
 								speedX=tmp;
 								lastMirror=mirror;
+								lastMirrorCooldown=0.4f;
 							}
 						}
 					}

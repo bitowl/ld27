@@ -8,19 +8,19 @@
    eJwTYmBgEBrFo3gUD2osDMQiWDC55kkDsQwWPGreqHmkmAcAYZYeBA==
   </data>
  </layer>
- <layer name="collision" width="20" height="20" opacity="0.35">
+ <layer name="collision" width="20" height="20" opacity="0.43">
   <data encoding="base64" compression="zlib">
-   eJxjYMANGPHIESM/at7gNm8UDB3AiQMTC9DTBil6R80b/OahA3qZBwAuswCR
+   eJxjYMANGPHIESM/at7gNo8Q4KSyedR230gyjxMHJtctlMbtqHmDyzx0QC/zAGFnAJ4=
   </data>
  </layer>
  <layer name="entities" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjZ2BgYMeB0QErEpsFSuPSS4x52ACp5rHhwaTYBwPEmMfCgAmYoTQTFJNiHjbAQcC9pIbrUALDyX/Y4psZB6YEEAozaocjzDwOBtxpFQZ4cYjzYDGPVDfg8jOt/EspIBRW2AA3DnEuShxCJQAAhj4CeA==
+   eJy9lOsKwCAIhWW1Fbu8/+vuT4E0T6WtPpCi8HhJCkQUgJXsbO/Tinx79CS0ekfFNPEyPXqevri0bsk0ehKxka+2ryM8C2JwVtc3E+m9HbARWj37u49ZD80psXs0Pzfzt+RXq3lWvTWkf6Gk1S+JC5yfRj2LD+IF0voCoQ==
   </data>
  </layer>
  <layer name="connections" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYCAemOBgDyQwwoINoZgcYIEHwwApZpvjwfiAMQl2jILBC4yR8HAEoHRsQVDVKIABo4F2AJUBAKlbBmw=
+   eJxjYCAemOBgDyQwwoINoZgcYIEHI6shFpjjwfiAMQl20BqYDbQDhjAwRsLDERBKxw5QjA3YQvFwAcTkEyMyzLXHIW4HxdQyjxwAAKygCJs=
   </data>
  </layer>
 </map>
