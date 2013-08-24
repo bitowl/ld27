@@ -16,10 +16,6 @@ public class Player extends Entity{
 	int width=27;*/
 	
 	
-	float SPEED=200;
-	
-/*	float speedX;
-	float speedY;*/
 	
 	float angle;
 	
@@ -28,6 +24,8 @@ public class Player extends Entity{
 		x=0;y=0;
 		height=27;
 		width=27;
+		texture=TestScreen.playerT;
+		testOnOtherEntities=true;
 	}
 	
 	@Override

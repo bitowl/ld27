@@ -6,12 +6,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -22,6 +25,11 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Level {
 
+	/**
+	 * to make things easier for me :P
+	 */
+	static Level current;
+	
 	// map
 	TiledMap map;
 	TiledMapRenderer renderer;
@@ -38,12 +46,13 @@ public class Level {
 	Array<Bullet> bullets;
 	Array<Entity> entities;
 	
-	// TODO handle them somewhere else
-	Texture playerT;
-	Texture bulletT;
-	Texture enemyT;
+
+	// TMP
+	ShapeRenderer debugrenderer;
 	
 	public Level(){
+		current=this;
+		
 		// load a test map
 		map=new TmxMapLoader().load("maps/testmap.tmx");
 		// map.getTileSets().getTile(1).getTextureRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -77,13 +86,14 @@ public class Level {
 
 		player.level=this;
 		
-		//TODO handle textures somewhere else
-		playerT=new Texture(Gdx.files.internal("images/player.png"));
-		bulletT=new Texture(Gdx.files.internal("images/bullet.png"));
-		enemyT=new Texture(Gdx.files.internal("images/enemy.png"));
+
+		// spawn chest
+		for(int i=0;i<20;i++){
+			entities.add(new Chest(MathUtils.random(mapWidth), MathUtils.random(mapHeight)));
+		}
 		
-		playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-	
+		
+		debugrenderer=new ShapeRenderer();
 	}
 	
 	
@@ -113,17 +123,26 @@ public class Level {
 		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		batch.draw(playerT, player.x, player.y);
+		player.draw(batch);
 		
 		for(Bullet bullet:bullets){
-			batch.draw(bulletT,bullet.x,bullet.y);
+			bullet.draw(batch);
+			//batch.draw(bulletT,bullet.x,bullet.y);
 		}
 		
 		for(Entity entity:entities){
-			batch.draw(enemyT,entity.x,entity.y);
+			//batch.draw(enemyT,entity.x,entity.y);
+			entity.draw(batch);
 		}
 		
 		batch.end();
+		debugrenderer.setProjectionMatrix(camera.combined);
+		debugrenderer.begin(ShapeType.Line);
+		debugrenderer.setColor(1,0,0,1);
+		for(Entity entity:entities){
+			debugrenderer.rect(entity.x,entity.y,entity.width,entity.height);
+		}
+		debugrenderer.end();
 	}
 	
 	/**
@@ -148,9 +167,6 @@ public class Level {
 		map.dispose();
 		
 		
-		// TODO handle textures somewhere else
-		playerT.dispose();
-		bulletT.dispose();
-		enemyT.dispose();
+
 	}
 }

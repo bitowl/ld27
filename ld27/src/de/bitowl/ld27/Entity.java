@@ -1,5 +1,8 @@
 package de.bitowl.ld27;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -16,6 +19,24 @@ public class Entity {
 
 	Level level;
 	float SPEED=200;
+	
+	Texture texture;
+	
+	/*
+	 * only true for the player
+	 * maybe later if monsters can hit monsters
+	 */
+	boolean testOnOtherEntities;
+	
+	/**
+	 * can the player collide with this entity
+	 * see hitByPlayer
+	 */
+	boolean collidable;
+	
+	public Entity(){
+		level=Level.current;
+	}
 	
 	public Rectangle getRectangle(){
 		// TODO do not always create a new one
@@ -36,7 +57,9 @@ public class Entity {
 		
 		
 		// check if we can go in y direction
-		checkEntities(x, newY);
+		if(testOnOtherEntities){
+			checkEntities(x, newY);
+		}
 		if(speedY!=0){
 			getMyCorners(x, newY);
 			
@@ -58,7 +81,9 @@ public class Entity {
 			}
 		}
 		
-		checkEntities(newX, y);
+		if(testOnOtherEntities){
+			checkEntities(newX, y);
+		}
 		if(speedX!=0){
 			getMyCorners(newX, y);
 			
@@ -121,9 +146,13 @@ public class Entity {
 	 */
 	public void checkEntities(float pX,float pY){
 		for(Entity entity:level.entities){
-			if(entity.getRectangle().overlaps(getRectangle())){
+			if(entity.collidable && entity.getRectangle().overlaps(getRectangle())){
+				
+				
 				// TODO add some "bouncing" code :/ never got that right :/ maybe exploding monsters? :P
 				//life-=entity.damageOnPlayer;
+				
+				entity.hitByPlayer();
 			}
 		}
 	}
@@ -132,5 +161,17 @@ public class Entity {
 	 */
 	public void hitWall(){
 		
+	}
+	
+	/**
+	 * this entity is being hit by the player (how dare he?)
+	 */
+	public void hitByPlayer(){
+		
+	}
+	
+	
+	public void draw(SpriteBatch batch){
+		batch.draw(texture,x,y);
 	}
 }

@@ -20,6 +20,7 @@ public class Bullet extends Entity{
 		height=8;
 		
 		SPEED=400;
+		texture=TestScreen.bulletT;
 	}
 	@Override
 	public void hitWall() {

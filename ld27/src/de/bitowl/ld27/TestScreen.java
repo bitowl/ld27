@@ -27,10 +27,23 @@ public class TestScreen extends AbstractScreen {
 	float spawnCounter;
 	
 	BitmapFont font;
+	// TODO handle them somewhere else
+	static Texture playerT;
+	static Texture bulletT;
+	static Texture enemyT;
+	static Texture chestT;
+	static Texture chestOpenT;
 	
 	public TestScreen() {
 
-
+		//TODO handle textures somewhere else
+		playerT=new Texture(Gdx.files.internal("images/player.png"));
+		bulletT=new Texture(Gdx.files.internal("images/bullet.png"));
+		enemyT=new Texture(Gdx.files.internal("images/enemy.png"));
+		chestT=new Texture(Gdx.files.internal("images/chest.png"));
+		chestOpenT=new Texture(Gdx.files.internal("images/chest_open.png"));
+		
+		playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		level=new Level();
 		
@@ -38,6 +51,8 @@ public class TestScreen extends AbstractScreen {
 		Controllers.addListener(new GamepadControl());
 		
 		font=new BitmapFont();
+		
+
 	}
 	
 	@Override
@@ -93,7 +108,12 @@ public class TestScreen extends AbstractScreen {
 	public void dispose() {
 		super.dispose();
 		
-
+		// TODO handle textures somewhere else
+		playerT.dispose();
+		bulletT.dispose();
+		enemyT.dispose();
+		chestT.dispose();
+		chestOpenT.dispose();
 		
 		level.dispose();
 	}
@@ -147,6 +167,15 @@ public class TestScreen extends AbstractScreen {
 		}
 	}
 	
+	/**
+	 * epic controls via gamepad
+	 * just because I now have one
+	 * 
+	 * TODO make an even more epic option screen to support every gamepad :D
+	 *  
+	 * @author bitowl
+	 *
+	 */
 	class GamepadControl extends ControllerAdapter{
 		// just inserted my values here
 		// TODO add an option screen for this

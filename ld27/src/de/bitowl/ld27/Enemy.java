@@ -9,5 +9,6 @@ public class Enemy extends Entity{
 		width=32;
 		height=32;
 		damageOnPlayer=1;
+		texture=TestScreen.enemyT;
 	}
 }
