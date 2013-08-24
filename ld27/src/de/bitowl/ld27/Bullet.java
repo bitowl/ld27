@@ -50,8 +50,10 @@ public class Bullet extends Entity{
 	public void hitEntity(Entity pEntity,boolean pX) {
 		// bullets are killed by other entities
 		//
-		if(pEntity instanceof Trigger || pEntity instanceof Chest || pEntity instanceof Barrel){
+		if(pEntity instanceof Trigger || pEntity instanceof Chest || pEntity instanceof Barrel || pEntity instanceof Wall){
 			bounce(pX);
+		}else{
+			kill();
 		}
 		pEntity.hitByBullet();
 		

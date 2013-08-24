@@ -9,14 +9,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Array;
 
 public class TestScreen extends AbstractScreen {
 
@@ -37,6 +30,10 @@ public class TestScreen extends AbstractScreen {
 	static Texture barrelOpenT;
 	static Texture triggerT;
 	static Texture trigger2T;
+	static Texture exitT;
+	static Texture exitOpenT;
+	static Texture wallT;
+	static Texture wallOpenT;
 	
 	public TestScreen() {
 
@@ -50,6 +47,10 @@ public class TestScreen extends AbstractScreen {
 		barrelOpenT=new Texture(Gdx.files.internal("images/barrel_open.png"));
 		triggerT=new Texture(Gdx.files.internal("images/trigger.png"));
 		trigger2T=new Texture(Gdx.files.internal("images/trigger_triggered.png"));
+		exitT=new Texture(Gdx.files.internal("images/exit.png"));
+		exitOpenT=new Texture(Gdx.files.internal("images/exit_open.png"));
+		wallT=new Texture(Gdx.files.internal("images/wall.png"));
+		wallOpenT=new Texture(Gdx.files.internal("images/wall_down.png"));
 		
 		playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -126,6 +127,10 @@ public class TestScreen extends AbstractScreen {
 		barrelOpenT.dispose();
 		triggerT.dispose();
 		trigger2T.dispose();
+		exitT.dispose();
+		exitOpenT.dispose();
+		wallT.dispose();
+		wallOpenT.dispose();
 		
 		level.dispose();
 	}

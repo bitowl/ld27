@@ -13,9 +13,20 @@ public class Trigger extends Entity {
 	}
 	@Override
 	public void hitByPlayer() {
+		level.player.speedX=0;
+		level.player.speedY=0;
 		if(!triggered){
 			texture=TestScreen.trigger2T;
 			triggered=true;
+			for(Wall wall:level.walls){
+				wall.down();
+			}
+		}else{
+			texture=TestScreen.triggerT;
+			triggered=false;
+			for(Wall wall:level.walls){
+				wall.up();
+			}
 		}
 	}
 	@Override

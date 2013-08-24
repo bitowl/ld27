@@ -47,9 +47,14 @@ public class Level {
 	Array<Bullet> bullets;
 	Array<Entity> entities;
 	
+	
+	// save all walls to trigger them
+	Array<Wall> walls;
 
 	// TMP
 	ShapeRenderer debugrenderer;
+
+	public int[][] obstacleMap;
 	
 	public Level(){
 		current=this;
@@ -61,6 +66,8 @@ public class Level {
 		
 		bullets=new Array<Bullet>();
 		entities=new Array<Entity>();
+		
+		walls=new Array<Wall>();
 
 		player.level=this;
 		
@@ -82,26 +89,50 @@ public class Level {
 				tileWidth=(int)collisionLayer.getTileWidth();
 				tileHeight=(int)collisionLayer.getTileHeight();
 				
-				//break;
+				// create obstacle map
+				obstacleMap=new int[mapHeight][mapWidth];
+				for(int y=0;y<mapHeight;y++){
+					for(int x=0;x<mapWidth;x++){
+						if(collisionLayer.getCell(x, y)!=null){
+							obstacleMap[y][x]=collisionLayer.getCell(x, y).getTile().getId();
+						}
+					}
+				}
 			}else if(layer.getName().equals("entities")){
 				layer.setVisible(false);
 				TiledMapTileLayer entlay=(TiledMapTileLayer)layer;
 				for(int x=0;x<entlay.getWidth();x++){
 					for(int y=0;y<entlay.getHeight();y++){
 						if(entlay.getCell(x, y)!=null){
+							Entity add=null;
 							switch(entlay.getCell(x, y).getTile().getId()){
 								case 2:
 									Chest chest=new Chest(x,y);
-									entities.add(chest);
+									add=chest;
 									break;
 								case 3:
 									Barrel barrel=new Barrel(x,y);
-									entities.add(barrel);
+									add=barrel;
 									break;
 								case 4:
 									Trigger trigger=new Trigger(x,y);
-									entities.add(trigger);
+									add=trigger;
 									break;
+								case 5:
+									Exit exit=new Exit(x, y);
+									add=exit;
+									break;
+								case 6:
+									Wall wall=new Wall(x,y);
+									walls.add(wall);
+									add=wall;
+									break;
+							}
+							if(add!=null){
+								entities.add(add);
+								if(add.blocking){ // TODO moving things that are blocking must check the obstacle map
+									obstacleMap[y][x]=1;
+								}
 							}
 						}
 					}
@@ -146,6 +177,9 @@ public class Level {
 				bullet.update(delta);
 			}
 		//}
+		for(Entity entity:entities){
+			entity.update(delta);
+		}
 
 	}
 	
