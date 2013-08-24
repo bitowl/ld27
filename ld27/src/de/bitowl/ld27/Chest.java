@@ -11,7 +11,7 @@ public class Chest extends Entity {
 		blocking=true;
 	}
 	@Override
-	public void hitByPlayer() {
+	public void hitByPlayer(boolean pX) {
 		if(!open){
 			texture=TestScreen.chestOpenT;
 			open=true;

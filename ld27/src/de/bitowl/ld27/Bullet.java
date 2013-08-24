@@ -52,7 +52,7 @@ public class Bullet extends Entity{
 		//
 		if(pEntity instanceof Trigger || pEntity instanceof Chest || pEntity instanceof Barrel || pEntity instanceof Wall){
 			bounce(pX);
-		}else{
+		}else if(!(pEntity instanceof PressurePlate)){
 			kill();
 		}
 		pEntity.hitByBullet();

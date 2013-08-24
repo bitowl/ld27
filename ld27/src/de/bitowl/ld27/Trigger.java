@@ -2,6 +2,11 @@ package de.bitowl.ld27;
 
 public class Trigger extends Entity {
 	boolean triggered;
+	
+	/**
+	 * cooldown before trigger can be triggered again
+	 */
+	float cooldown;
 
 	public Trigger(int pX, int pY) {
 		x=pX*level.tileWidth;y=pY*level.tileHeight;
@@ -12,9 +17,17 @@ public class Trigger extends Entity {
 		texture=TestScreen.triggerT;
 	}
 	@Override
-	public void hitByPlayer() {
-		level.player.speedX=0;
-		level.player.speedY=0;
+	public void hitByPlayer(boolean pX) {	
+		trigger();
+	}
+	@Override
+	public void hitByBullet() {
+		trigger();
+	}
+	public void trigger(){
+		if(cooldown>0){
+			return;
+		}
 		if(!triggered){
 			texture=TestScreen.trigger2T;
 			triggered=true;
@@ -28,9 +41,11 @@ public class Trigger extends Entity {
 				wall.up();
 			}
 		}
+		cooldown=0.3f;
 	}
 	@Override
-	public void hitByBullet() {
-		hitByPlayer();
+	public void update(float pDelta) {
+		super.update(pDelta);
+		if(cooldown>0){cooldown-=pDelta;}
 	}
 }

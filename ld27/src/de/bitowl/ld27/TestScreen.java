@@ -34,6 +34,10 @@ public class TestScreen extends AbstractScreen {
 	static Texture exitOpenT;
 	static Texture wallT;
 	static Texture wallOpenT;
+	static Texture crateT;
+	static Texture crateDestroyedT;
+	static Texture pressurePlateT;
+	static Texture pressurePlateDownT;
 	
 	public TestScreen() {
 
@@ -51,6 +55,10 @@ public class TestScreen extends AbstractScreen {
 		exitOpenT=new Texture(Gdx.files.internal("images/exit_open.png"));
 		wallT=new Texture(Gdx.files.internal("images/wall.png"));
 		wallOpenT=new Texture(Gdx.files.internal("images/wall_down.png"));
+		crateT=new Texture(Gdx.files.internal("images/crate.png"));
+		crateDestroyedT=new Texture(Gdx.files.internal("images/crate_destroyed.png"));
+		pressurePlateT=new Texture(Gdx.files.internal("images/pressureplate.png"));
+		pressurePlateDownT=new Texture(Gdx.files.internal("images/pressureplate_down.png"));
 		
 		playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -131,6 +139,11 @@ public class TestScreen extends AbstractScreen {
 		exitOpenT.dispose();
 		wallT.dispose();
 		wallOpenT.dispose();
+		crateT.dispose();
+		crateDestroyedT.dispose();
+		pressurePlateT.dispose();
+		pressurePlateDownT.dispose();
+		
 		
 		level.dispose();
 	}

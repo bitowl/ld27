@@ -127,6 +127,14 @@ public class Level {
 									walls.add(wall);
 									add=wall;
 									break;
+								case 7:
+									Crate crate=new Crate(x, y);
+									add=crate;
+									break;
+								case 8:
+									PressurePlate plate=new PressurePlate(x, y);
+									add=plate;
+									break;
 							}
 							if(add!=null){
 								entities.add(add);

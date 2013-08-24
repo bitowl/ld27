@@ -183,7 +183,7 @@ public class Entity {
 	 */
 	public Entity checkEntities(float pX,float pY,boolean x){
 		for(Entity entity:level.entities){
-			if(entity.collidable && entity.getRectangle().overlaps(getRectangle(pX,pY))){
+			if(entity.collidable && entity!=this && entity.getRectangle().overlaps(getRectangle(pX,pY))){
 				
 				
 				// TODO add some "bouncing" code :/ never got that right :/ maybe exploding monsters? :P
@@ -195,6 +195,34 @@ public class Entity {
 				if(entity.blocking){
 					return entity;
 				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * checks collisions with other entities without calling hitEntity();
+	 * @param pX
+	 * @param pY
+	 * @return
+	 */
+	public Entity checkEntities(float pX,float pY){
+		for(Entity entity:level.entities){
+			if(entity.collidable && entity!=this && entity.getRectangle().overlaps(getRectangle(pX,pY))){			
+				if(entity.blocking){
+					return entity;
+				}
+			}
+		}
+		return null;
+	}
+	/**
+	 * returns a colliding entity even if it's not blocking (for barrel on pressure plate)
+	 */
+	public Entity getEntity(float pX,float pY){
+		for(Entity entity:level.entities){
+			if(entity.collidable && entity!=this && entity.getRectangle().overlaps(getRectangle(pX,pY))){			
+				return entity;
 			}
 		}
 		return null;
@@ -215,8 +243,9 @@ public class Entity {
 	
 	/**
 	 * this entity is being hit by the player (how dare he?)
+	 * @param pX 
 	 */
-	public void hitByPlayer(){
+	public void hitByPlayer(boolean pX){
 		
 	}
 	public void hitByBullet(){
@@ -227,4 +256,48 @@ public class Entity {
 	public void draw(SpriteBatch batch){
 		batch.draw(texture,x,y);
 	}
+	
+	
+	
+	
+	public final int LEFT=0;
+	public final int RIGHT=1;
+	public final int UP=2;
+	public final int DOWN=3;
+	
+	/* collision test for moved objects */
+	public boolean canMoveTo(float pX,float pY,int pMove){
+		getMyCorners(pX, pY);
+		
+		switch(pMove){
+			case LEFT:
+				if(downleft == 0 && upleft == 0){
+					return checkEntities(pX,pY)==null;
+				}else{
+					return false;
+				}
+			case RIGHT:
+				if(downright == 0 && upright == 0){
+					return checkEntities(pX,pY)==null;
+				}else{
+					return false;
+				}
+			case UP:
+				if(upright == 0 && upleft == 0){
+					return checkEntities(pX,pY)==null;
+				}else{
+					return false;
+				}
+			case DOWN:
+				if(downright == 0 && downleft == 0){
+					return checkEntities(pX,pY)==null;
+				}else{
+					return false;
+				}
+		}
+		
+			
+		return false;
+	}
+	
 }
