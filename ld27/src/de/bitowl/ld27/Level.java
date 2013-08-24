@@ -2,6 +2,7 @@ package de.bitowl.ld27;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -87,11 +88,14 @@ public class Level {
 		player.level=this;
 		
 
-		// spawn chest
-		for(int i=0;i<20;i++){
+		// spawn chests
+		for(int i=0;i<10;i++){
 			entities.add(new Chest(MathUtils.random(mapWidth), MathUtils.random(mapHeight)));
 		}
-		
+		// spawn barrels (lots of barrels!)
+		for(int i=0;i<20;i++){
+			entities.add(new Barrel(MathUtils.random(mapWidth), MathUtils.random(mapHeight)));
+		}
 		
 		debugrenderer=new ShapeRenderer();
 	}
@@ -123,7 +127,7 @@ public class Level {
 		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		player.draw(batch);
+		
 		
 		for(Bullet bullet:bullets){
 			bullet.draw(batch);
@@ -134,15 +138,20 @@ public class Level {
 			//batch.draw(enemyT,entity.x,entity.y);
 			entity.draw(batch);
 		}
-		
+		player.draw(batch);
 		batch.end();
+
+
+		Gdx.gl.glEnable(GL10.GL_BLEND);	
+	    Gdx.gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		debugrenderer.setProjectionMatrix(camera.combined);
 		debugrenderer.begin(ShapeType.Line);
-		debugrenderer.setColor(1,0,0,1);
+		debugrenderer.setColor(1,0,0,0.4f);
 		for(Entity entity:entities){
 			debugrenderer.rect(entity.x,entity.y,entity.width,entity.height);
 		}
 		debugrenderer.end();
+		Gdx.gl.glDisable(GL10.GL_BLEND);
 	}
 	
 	/**

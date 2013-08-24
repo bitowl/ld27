@@ -33,6 +33,8 @@ public class TestScreen extends AbstractScreen {
 	static Texture enemyT;
 	static Texture chestT;
 	static Texture chestOpenT;
+	static Texture barrelT;
+	static Texture barrelOpenT;
 	
 	public TestScreen() {
 
@@ -42,6 +44,9 @@ public class TestScreen extends AbstractScreen {
 		enemyT=new Texture(Gdx.files.internal("images/enemy.png"));
 		chestT=new Texture(Gdx.files.internal("images/chest.png"));
 		chestOpenT=new Texture(Gdx.files.internal("images/chest_open.png"));
+		barrelT=new Texture(Gdx.files.internal("images/barrel.png"));
+		barrelOpenT=new Texture(Gdx.files.internal("images/barrel_open.png"));
+		
 		
 		playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -114,6 +119,8 @@ public class TestScreen extends AbstractScreen {
 		enemyT.dispose();
 		chestT.dispose();
 		chestOpenT.dispose();
+		barrelT.dispose();
+		barrelOpenT.dispose();
 		
 		level.dispose();
 	}
