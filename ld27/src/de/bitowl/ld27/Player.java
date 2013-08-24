@@ -39,6 +39,11 @@ public class Player extends Entity{
 	}
 
 	
+	@Override
+	public void hitEntity(Entity pEntity) {
+		pEntity.hitByPlayer();
+	}
+	
 	/*public void moveLeft(float pDelta){
 		x-=pDelta*SPEED;
 		speedX=-1;

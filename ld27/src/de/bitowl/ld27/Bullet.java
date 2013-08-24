@@ -21,6 +21,7 @@ public class Bullet extends Entity{
 		
 		SPEED=400;
 		texture=TestScreen.bulletT;
+		testOnOtherEntities=true;
 	}
 	@Override
 	public void hitWall() {
@@ -28,6 +29,13 @@ public class Bullet extends Entity{
 		level.bullets.removeValue(this, true);
 	}
 	
+	@Override
+	public void hitEntity(Entity pEntity) {
+		// bullets are killed by other entities
+		level.bullets.removeValue(this, true);
+		
+		// but they might cause SERIOUS damage :P
+	}
 	/*public void update(float delta){
 		x+=speedX*SPEED*delta;
 		y+=speedY*SPEED*delta;

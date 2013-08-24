@@ -1,6 +1,7 @@
 package de.bitowl.ld27;
 
 public class Barrel extends Entity{
+	boolean open;
 	public Barrel(float pX,float pY){
 		x=pX*level.tileWidth;y=pY*level.tileHeight;
 		width=32;
@@ -10,7 +11,9 @@ public class Barrel extends Entity{
 	}
 	@Override
 	public void hitByPlayer() {
-		texture=TestScreen.barrelOpenT;
-		collidable=false;
+		if(!open){
+			texture=TestScreen.barrelOpenT;
+			open=true;
+		}
 	}
 }

@@ -33,6 +33,10 @@ public class Entity {
 	 * see hitByPlayer
 	 */
 	boolean collidable;
+	/**
+	 * does this entity block the way of the player
+	 */
+	boolean blocking;
 	
 	public Entity(){
 		level=Level.current;
@@ -41,6 +45,10 @@ public class Entity {
 	public Rectangle getRectangle(){
 		// TODO do not always create a new one
 		return new Rectangle(x,y,width,height);
+	
+	}
+	public Rectangle getRectangle(float pX,float pY){
+		return new Rectangle(pX,pY,width,height);
 	}
 	
 	// HEAVY collision code ^^
@@ -57,10 +65,21 @@ public class Entity {
 		
 		
 		// check if we can go in y direction
+		boolean noentcol=true; // no collision with an entity
 		if(testOnOtherEntities){
-			checkEntities(x, newY);
+			Entity entity=checkEntities(x,newY);
+			if(entity!=null){
+				if(speedY>0){
+					y=entity.y-height;
+					//y= (ytile+1)*level.tileHeight-height;
+				}else{
+					y=entity.y+entity.height;
+				//	y= (ytile+1)*level.tileHeight+1;
+				}
+				noentcol=false;
+			}
 		}
-		if(speedY!=0){
+		if(noentcol&&speedY!=0){
 			getMyCorners(x, newY);
 			
 	
@@ -80,11 +99,21 @@ public class Entity {
 				}
 			}
 		}
-		
-		if(testOnOtherEntities){
-			checkEntities(newX, y);
+		noentcol=true;
+		if(speedX!=0&&testOnOtherEntities){
+			Entity entity=checkEntities(newX,y);
+			if(entity!=null){
+				if(speedX>0){
+					x=entity.x-width;
+				}else{
+					x=entity.x+entity.width;
+				}
+
+				noentcol=false;
+			}
 		}
-		if(speedX!=0){
+	
+		if(noentcol&&speedX!=0){
 			getMyCorners(newX, y);
 			
 			
@@ -143,18 +172,32 @@ public class Entity {
 	
 	/**
 	 * checks collisions with other entities
+	 * @return true if collision 
 	 */
-	public void checkEntities(float pX,float pY){
+	public Entity checkEntities(float pX,float pY){
 		for(Entity entity:level.entities){
-			if(entity.collidable && entity.getRectangle().overlaps(getRectangle())){
+			if(entity.collidable && entity.getRectangle().overlaps(getRectangle(pX,pY))){
 				
 				
 				// TODO add some "bouncing" code :/ never got that right :/ maybe exploding monsters? :P
 				//life-=entity.damageOnPlayer;
 				
-				entity.hitByPlayer();
+				//entity.hitByPlayer();
+				hitEntity(entity);
+				
+				if(entity.blocking){
+					return entity;
+				}
 			}
 		}
+		return null;
+	}
+	
+	/**
+	 * this entity hit another entity
+	 */
+	public void hitEntity(Entity pEntity){
+		
 	}
 	/**
 	 * this entity hit a wall

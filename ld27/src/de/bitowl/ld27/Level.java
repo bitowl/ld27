@@ -90,11 +90,11 @@ public class Level {
 
 		// spawn chests
 		for(int i=0;i<10;i++){
-			entities.add(new Chest(MathUtils.random(mapWidth), MathUtils.random(mapHeight)));
+			entities.add(new Chest(MathUtils.random(mapWidth-1), MathUtils.random(mapHeight-1)));
 		}
 		// spawn barrels (lots of barrels!)
 		for(int i=0;i<20;i++){
-			entities.add(new Barrel(MathUtils.random(mapWidth), MathUtils.random(mapHeight)));
+			entities.add(new Barrel(MathUtils.random(mapWidth-1), MathUtils.random(mapHeight-1)));
 		}
 		
 		debugrenderer=new ShapeRenderer();
@@ -129,15 +129,16 @@ public class Level {
 		batch.begin();
 		
 		
+		for(Entity entity:entities){
+			//batch.draw(enemyT,entity.x,entity.y);
+			entity.draw(batch);
+		}
+		
 		for(Bullet bullet:bullets){
 			bullet.draw(batch);
 			//batch.draw(bulletT,bullet.x,bullet.y);
 		}
 		
-		for(Entity entity:entities){
-			//batch.draw(enemyT,entity.x,entity.y);
-			entity.draw(batch);
-		}
 		player.draw(batch);
 		batch.end();
 
@@ -150,6 +151,8 @@ public class Level {
 		for(Entity entity:entities){
 			debugrenderer.rect(entity.x,entity.y,entity.width,entity.height);
 		}
+		debugrenderer.setColor(0, 1, 0, 0.4f);
+		debugrenderer.rect(player.x, player.y, player.width, player.height);
 		debugrenderer.end();
 		Gdx.gl.glDisable(GL10.GL_BLEND);
 	}
