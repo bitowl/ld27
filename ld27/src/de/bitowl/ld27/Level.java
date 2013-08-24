@@ -136,6 +136,24 @@ public class Level {
 									PressurePlate plate=new PressurePlate(x, y);
 									add=plate;
 									break;
+									
+									
+								case 10:
+									Mirror mirrorul=new Mirror(x,y,Mirror.UPLEFT);
+									add=mirrorul;
+									break;
+								case 11:
+									Mirror mirrorur=new Mirror(x,y,Mirror.UPRIGHT);
+									add=mirrorur;
+									break;
+								case 12:
+									Mirror mirrordl=new Mirror(x,y,Mirror.DOWNLEFT);
+									add=mirrordl;
+									break;
+								case 13:
+									Mirror mirrordr=new Mirror(x,y,Mirror.DOWNRIGHT);
+									add=mirrordr;
+									break;
 							}
 							if(add!=null){
 								entities.add(add);

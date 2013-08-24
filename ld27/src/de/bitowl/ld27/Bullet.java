@@ -14,6 +14,8 @@ public class Bullet extends Entity{
 	float nextSpeedX;
 	float nextSpeedY;
 	
+	Mirror lastMirror;
+	
 	public Bullet(float pX,float pY,float pSpeedX,float pSpeedY){
 		x=pX;
 		y=pY;
@@ -52,10 +54,87 @@ public class Bullet extends Entity{
 		//
 		if(pEntity instanceof Trigger || pEntity instanceof Chest || pEntity instanceof Barrel || pEntity instanceof Wall){
 			bounce(pX);
-		}else if(!(pEntity instanceof PressurePlate)){
+			pEntity.hitByBullet();
+		}else if(pEntity instanceof PressurePlate){
+			
+		}else if(pEntity instanceof Mirror){ // TODO add high physics mirror logic here
+			Mirror mirror=(Mirror)pEntity;
+			switch(mirror.type){
+				case Mirror.UPLEFT:
+					if(speedX<0 && lastMirror!=mirror){
+						bounce(true);
+					}else if(speedY>0 && lastMirror!=mirror){
+						bounce(false);
+					}else{
+						if(((int)newX+width)%level.tileWidth>=(((int)newY)%level.tileWidth)){ // reflect when we are on the diagonal
+							if(lastMirror!=mirror){
+								float tmp=speedY;
+								speedY=speedX;
+								speedX=tmp;
+								lastMirror=mirror;
+							}
+						}
+					}
+					break;
+					
+				case Mirror.UPRIGHT:
+					if(speedX>0 && lastMirror!=mirror){
+						bounce(true);
+					}else if(speedY>0 && lastMirror!=mirror){
+						bounce(false);
+					}else{
+						if(((int)newX)%level.tileWidth<=32-(((int)newY)%level.tileWidth)){ // reflect when we are on the diagonal
+							if(lastMirror!=mirror){
+								float tmp=speedY;
+								speedY=-speedX;
+								speedX=-tmp;
+								lastMirror=mirror;
+							}
+						}
+					}
+					break;				
+					
+					
+				case Mirror.DOWNLEFT:
+					if(speedX<0 && lastMirror!=mirror){
+						bounce(true);
+					}else if(speedY<0 && lastMirror!=mirror){
+						bounce(false);
+					}else{
+						if(32-((int)newX+width)%level.tileWidth<=(((int)newY+height)%level.tileWidth)){ // reflect when we are on the diagonal
+							if(lastMirror!=mirror){
+								float tmp=speedY;
+								speedY=-speedX;
+								speedX=-tmp;
+								lastMirror=mirror;
+							}
+						}
+					}
+					break;	
+					
+				case Mirror.DOWNRIGHT:
+					if(speedX>0 && lastMirror!=mirror){
+						bounce(true);
+					}else if(speedY<0 && lastMirror!=mirror){
+						bounce(false);
+					}else{
+						if(((int)newX)%level.tileWidth<=(((int)newY+height)%level.tileWidth)){ // reflect when we are on the diagonal
+							if(lastMirror!=mirror){
+								float tmp=speedY;
+								speedY=speedX;
+								speedX=tmp;
+								lastMirror=mirror;
+							}
+						}
+					}
+					break;
+			}
+			
+		}else{
 			kill();
+			pEntity.hitByBullet();
 		}
-		pEntity.hitByBullet();
+		
 		
 		// but they might cause SERIOUS damage :P
 	}

@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Kachelebene 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJzjYmBg4MKBefDIESM/at7gNm8UDx0sDMQiWDC55kkDsQwWPGreqHmkmAcA6SsTTA==
+   eJwTYmBgEBrFo3gUD2osDMQiWDC55kkDsQwWPGreqHmkmAcAYZYeBA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.35">
@@ -15,12 +15,12 @@
  </layer>
  <layer name="entities" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjZ2BgYMeB0QErFjFceokxDxsg1Tw2PJgU+2CAGPNYsJjDDKWZoJgU87ABDgLuJTVchxIYTv7DFt/MODAlgFCYUTscYeZxMOBOq+SYR6oeXH6mlX8pBdQIq8EEADTmAkY=
+   eJxjZ2BgYMeB0QErEpsFSuPSS4x52ACp5rHhwaTYBwPEmMfCgAmYoTQTFJNiHjbAQcC9pIbrUALDyX/Y4psZB6YEEAozaocjzDwOBtxpFQZ4cYjzYDGPVDfg8jOt/EspIBRW2AA3DnEuShxCJQAAhj4CeA==
   </data>
  </layer>
  <layer name="connections" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBjawAgLNoRicoAFHgwDpJhtjgfjA8Yk2DEKBi8wRsLDEYDSsQVBVaMABowG2gFUBgAzjQYE
+   eJxjYCAemOBgDyQwwoINoZgcYIEHwwApZpvjwfiAMQl2jILBC4yR8HAEoHRsQVDVKIABo4F2AJUBAKlbBmw=
   </data>
  </layer>
 </map>

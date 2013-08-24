@@ -22,6 +22,10 @@ public class Entity {
 	
 	Texture texture;
 	
+	float newX;
+	float newY;
+	
+	
 	/*
 	 * only true for the player
 	 * maybe later if monsters can hit monsters
@@ -56,8 +60,8 @@ public class Entity {
 	public void update(float pDelta){
 		
 		// precalculate
-		float newX=x+speedX*SPEED*pDelta;
-		float newY=y+speedY*SPEED*pDelta;
+		newX=x+speedX*SPEED*pDelta;
+		newY=y+speedY*SPEED*pDelta;
 		
 		// on which tile will we be (our left, bottom corner)
 		int xtile=(int) (newX/level.tileWidth);
@@ -191,7 +195,13 @@ public class Entity {
 				//life-=entity.damageOnPlayer;
 				
 				//entity.hitByPlayer();
+				
 				hitEntity(entity,x);
+				
+				if(entity instanceof Mirror && this instanceof Bullet){
+					// bullets should not be blocked by mirrors
+					return null;
+				}
 				
 				if(entity.blocking){
 					return entity;

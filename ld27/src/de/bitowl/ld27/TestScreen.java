@@ -21,6 +21,7 @@ public class TestScreen extends AbstractScreen {
 	
 	BitmapFont font;
 	// TODO handle them somewhere else
+	// TODO put them in a texture atlas
 	static Texture playerT;
 	static Texture bulletT;
 	static Texture enemyT;
@@ -38,6 +39,11 @@ public class TestScreen extends AbstractScreen {
 	static Texture crateDestroyedT;
 	static Texture pressurePlateT;
 	static Texture pressurePlateDownT;
+	static Texture mirrorUpLeftT;
+	static Texture mirrorUpRightT;
+	static Texture mirrorDownLeftT;
+	static Texture mirrorDownRightT;
+	
 	
 	public TestScreen() {
 
@@ -59,6 +65,10 @@ public class TestScreen extends AbstractScreen {
 		crateDestroyedT=new Texture(Gdx.files.internal("images/crate_destroyed.png"));
 		pressurePlateT=new Texture(Gdx.files.internal("images/pressureplate.png"));
 		pressurePlateDownT=new Texture(Gdx.files.internal("images/pressureplate_down.png"));
+		mirrorUpLeftT=new Texture(Gdx.files.internal("images/mirror_lu.png"));
+		mirrorUpRightT=new Texture(Gdx.files.internal("images/mirror_ru.png"));
+		mirrorDownLeftT=new Texture(Gdx.files.internal("images/mirror_ld.png"));
+		mirrorDownRightT=new Texture(Gdx.files.internal("images/mirror_rd.png"));
 		
 		playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -145,6 +155,10 @@ public class TestScreen extends AbstractScreen {
 		crateDestroyedT.dispose();
 		pressurePlateT.dispose();
 		pressurePlateDownT.dispose();
+		mirrorDownLeftT.dispose();
+		mirrorDownRightT.dispose();
+		mirrorUpLeftT.dispose();
+		mirrorUpRightT.dispose();
 		
 		
 		level.dispose();

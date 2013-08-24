@@ -70,9 +70,10 @@ public class Enemy extends Entity{
 	}
 	
 	
-	public float interpol(float v0,float v1,float delta){
+	public float interpol(float v0,float v1,float delta){ // catch dat bad guy!
 		return v0+(v1-v0)*delta;
 	}
+	
 	@Override
 	public void hitByBullet() {
 		kill();
