@@ -13,4 +13,9 @@
    eJxjYCAfMOIRR8eUmofNfGqZRyygp3nkhCG57hgFo2AUjAJyAAB54AAX
   </data>
  </layer>
+ <layer name="entities" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFpAIWLGLMUJoJikfBKBgFo2C4AwA9EAAM
+  </data>
+ </layer>
 </map>

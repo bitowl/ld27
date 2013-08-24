@@ -40,7 +40,7 @@ public class Player extends Entity{
 
 	
 	@Override
-	public void hitEntity(Entity pEntity) {
+	public void hitEntity(Entity pEntity,boolean pX) {
 		pEntity.hitByPlayer();
 	}
 	

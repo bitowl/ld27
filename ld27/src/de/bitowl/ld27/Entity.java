@@ -67,14 +67,12 @@ public class Entity {
 		// check if we can go in y direction
 		boolean noentcol=true; // no collision with an entity
 		if(testOnOtherEntities){
-			Entity entity=checkEntities(x,newY);
+			Entity entity=checkEntities(x,newY,false);
 			if(entity!=null){
 				if(speedY>0){
 					y=entity.y-height;
-					//y= (ytile+1)*level.tileHeight-height;
 				}else{
 					y=entity.y+entity.height;
-				//	y= (ytile+1)*level.tileHeight+1;
 				}
 				noentcol=false;
 			}
@@ -88,20 +86,20 @@ public class Entity {
 					y=newY;
 				}else{
 					y= (ytile+1)*level.tileHeight-height;
-					hitWall();
+					hitWall(false);
 				}
 			}else if(speedY<0){
 				if(downleft==0 && downright ==0){
 					y=newY;
 				}else{
 					y= (ytile+1)*level.tileHeight+1;
-					hitWall();
+					hitWall(false);
 				}
 			}
 		}
 		noentcol=true;
 		if(speedX!=0&&testOnOtherEntities){
-			Entity entity=checkEntities(newX,y);
+			Entity entity=checkEntities(newX,y,true);
 			if(entity!=null){
 				if(speedX>0){
 					x=entity.x-width;
@@ -114,6 +112,7 @@ public class Entity {
 		}
 	
 		if(noentcol&&speedX!=0){
+			
 			getMyCorners(newX, y);
 			
 			
@@ -122,18 +121,26 @@ public class Entity {
 					x = newX;
 				}else{
 					x=(xtile+1)*level.tileWidth;
-					hitWall();
+					hitWall(true);
 				}
 			}else{
 				if(downright==0 && upright==0){
 					x = newX;
 				}else{
 					x=(xtile+1)*level.tileWidth-width-1;
-					hitWall();
+					hitWall(true);
 				}
 			}
 		}
-
+		
+		if(x<0){
+			hitWall(true);
+			x=0;
+		}
+		if(y<0){
+			hitWall(false);
+			y=0;
+		}
 		
 	}
 	
@@ -174,7 +181,7 @@ public class Entity {
 	 * checks collisions with other entities
 	 * @return true if collision 
 	 */
-	public Entity checkEntities(float pX,float pY){
+	public Entity checkEntities(float pX,float pY,boolean x){
 		for(Entity entity:level.entities){
 			if(entity.collidable && entity.getRectangle().overlaps(getRectangle(pX,pY))){
 				
@@ -183,7 +190,7 @@ public class Entity {
 				//life-=entity.damageOnPlayer;
 				
 				//entity.hitByPlayer();
-				hitEntity(entity);
+				hitEntity(entity,x);
 				
 				if(entity.blocking){
 					return entity;
@@ -196,13 +203,13 @@ public class Entity {
 	/**
 	 * this entity hit another entity
 	 */
-	public void hitEntity(Entity pEntity){
+	public void hitEntity(Entity pEntity,boolean pX){
 		
 	}
 	/**
 	 * this entity hit a wall
 	 */
-	public void hitWall(){
+	public void hitWall(boolean pX){
 		
 	}
 	
@@ -210,6 +217,9 @@ public class Entity {
 	 * this entity is being hit by the player (how dare he?)
 	 */
 	public void hitByPlayer(){
+		
+	}
+	public void hitByBullet(){
 		
 	}
 	

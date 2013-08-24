@@ -54,6 +54,17 @@ public class Level {
 	public Level(){
 		current=this;
 		
+		
+		
+		// add things on the map
+		player=new Player();
+		
+		bullets=new Array<Bullet>();
+		entities=new Array<Entity>();
+
+		player.level=this;
+		
+		
 		// load a test map
 		map=new TmxMapLoader().load("maps/testmap.tmx");
 		// map.getTileSets().getTile(1).getTextureRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -71,31 +82,48 @@ public class Level {
 				tileWidth=(int)collisionLayer.getTileWidth();
 				tileHeight=(int)collisionLayer.getTileHeight();
 				
-				break;
+				//break;
+			}else if(layer.getName().equals("entities")){
+				layer.setVisible(false);
+				TiledMapTileLayer entlay=(TiledMapTileLayer)layer;
+				for(int x=0;x<entlay.getWidth();x++){
+					for(int y=0;y<entlay.getHeight();y++){
+						if(entlay.getCell(x, y)!=null){
+							switch(entlay.getCell(x, y).getTile().getId()){
+								case 2:
+									Chest chest=new Chest(x,y);
+									entities.add(chest);
+									break;
+								case 3:
+									Barrel barrel=new Barrel(x,y);
+									entities.add(barrel);
+									break;
+								case 4:
+									Trigger trigger=new Trigger(x,y);
+									entities.add(trigger);
+									break;
+							}
+						}
+					}
+				}
 			}
+			
 		}
 		if(collisionLayer==null){
 			throw new RuntimeException("no collision layer found");
 		}
 		
-		
-		// add things on the map
-		player=new Player();
-		
-		bullets=new Array<Bullet>();
-		entities=new Array<Entity>();
 
-		player.level=this;
 		
 
-		// spawn chests
+	/*	// spawn chests
 		for(int i=0;i<10;i++){
 			entities.add(new Chest(MathUtils.random(mapWidth-1), MathUtils.random(mapHeight-1)));
 		}
 		// spawn barrels (lots of barrels!)
 		for(int i=0;i<20;i++){
 			entities.add(new Barrel(MathUtils.random(mapWidth-1), MathUtils.random(mapHeight-1)));
-		}
+		}*/
 		
 		debugrenderer=new ShapeRenderer();
 	}
@@ -112,12 +140,12 @@ public class Level {
 		if(player.x>width){player.x=width;}
 		if(player.y>height){player.y=height;}
 		for(Bullet bullet:bullets){
-			if(outsideScreen(bullet.x, bullet.y, 8, 8)){
+		/*	if(outsideScreen(bullet.x, bullet.y, 8, 8)){
 				bullets.removeValue(bullet, true);
-			}else{
+			}else{*/
 				bullet.update(delta);
 			}
-		}
+		//}
 
 	}
 	

@@ -10,5 +10,14 @@ public class Enemy extends Entity{
 		height=32;
 		damageOnPlayer=1;
 		texture=TestScreen.enemyT;
+		collidable=true;
+		blocking=true;
+	}
+	@Override
+	public void hitByBullet() {
+		kill();
+	}
+	public void kill(){
+		level.entities.removeValue(this, true);
 	}
 }

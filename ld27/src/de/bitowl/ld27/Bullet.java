@@ -11,6 +11,9 @@ public class Bullet extends Entity{
 	
 	//float SPEED=400;
 	
+	float nextSpeedX;
+	float nextSpeedY;
+	
 	public Bullet(float pX,float pY,float pSpeedX,float pSpeedY){
 		x=pX;
 		y=pY;
@@ -24,17 +27,50 @@ public class Bullet extends Entity{
 		testOnOtherEntities=true;
 	}
 	@Override
-	public void hitWall() {
+	public void hitWall(boolean pX) {
 		// bullets are killed by walls
-		level.bullets.removeValue(this, true);
+		//level.bullets.removeValue(this, true);
+		//bounce(pX);
+		kill();
 	}
 	
 	@Override
-	public void hitEntity(Entity pEntity) {
+	public void update(float pDelta) {
+		if(nextSpeedX!=0){
+			speedX=nextSpeedX;
+			nextSpeedX=0;
+		}
+		if(nextSpeedY!=0){
+			speedY=nextSpeedY;
+			nextSpeedY=0;
+		}
+		super.update(pDelta);
+	}
+	@Override
+	public void hitEntity(Entity pEntity,boolean pX) {
 		// bullets are killed by other entities
-		level.bullets.removeValue(this, true);
+		//
+		if(pEntity instanceof Trigger || pEntity instanceof Chest || pEntity instanceof Barrel){
+			bounce(pX);
+		}
+		pEntity.hitByBullet();
 		
 		// but they might cause SERIOUS damage :P
+	}
+	
+	public void kill(){
+		level.bullets.removeValue(this, true);
+	}
+	public void bounce(boolean pX){
+		if(pX){
+			//speedX*=-1;
+			nextSpeedX=-speedX;
+			//x+=speedX*30;
+		}else{
+			nextSpeedY=-speedY;
+			//speedY*=-1;
+			//y+=speedY*30;
+		}
 	}
 	/*public void update(float delta){
 		x+=speedX*SPEED*delta;

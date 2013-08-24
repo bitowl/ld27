@@ -5,12 +5,17 @@
  </tileset>
  <layer name="Kachelebene 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJzjYmBg4CIT81Cgd9S8wW/eKB7Fo3gU48MAOy8PrQ==
+   eJzjYmBg4CIT81Cgd9S8wW/eKB48WAiIubHgUfNGzRtI8wDWSxAi
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.35">
   <data encoding="base64" compression="zlib">
-   eJxjYCAfMOIRR8eUmofNfGqZRyygp3nkhCG57hgFo2AUjAJyAAB54AAX
+   eJxjYCAfMOIRR8eUmofNfGqZRyygp3nkhCG57hgFgx+QmybwmUdNMGreyDQPAJK0ACU=
+  </data>
+ </layer>
+ <layer name="entities" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFpAIWLGLMUJoJikfBKBgFo2C4AwA9EAAM
   </data>
  </layer>
 </map>

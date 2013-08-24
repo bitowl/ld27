@@ -8,6 +8,7 @@ public class Barrel extends Entity{
 		height=32;
 		texture=TestScreen.barrelT;
 		collidable=true;
+		blocking=true;
 	}
 	@Override
 	public void hitByPlayer() {
