@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="tileset.png" width="256" height="256"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzjYmBg4CIT81Cgd9S8wW/eKB7Fo3gU48MAOy8PrQ==
+  </data>
+ </layer>
+ <layer name="collision" width="20" height="20" opacity="0.35">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfMOIRR8eUmofNfGqZRyygp3nkhCG57hgFo2AUjAJyAAB54AAX
+  </data>
+ </layer>
+</map>
