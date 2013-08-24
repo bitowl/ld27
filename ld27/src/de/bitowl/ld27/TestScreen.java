@@ -80,11 +80,13 @@ public class TestScreen extends AbstractScreen {
 		if(spawnCounter>10){
 			spawnCounter-=10;
 			// SPAWN DA ENEMIES
-			level.spawnEnemy(MathUtils.random(level.width),MathUtils.random(level.height));
-			
-			
-			// TODO only spawn on free tiles
-			// TODO maybe only spawn on a tile? I mean like centered in a tile like :D
+			int x;
+			int y;
+			do{
+			x=MathUtils.random(level.mapWidth);
+			y=MathUtils.random(level.mapHeight);
+			}while(level.collisionLayer.getCell(x, y)!=null&&level.collisionLayer.getCell(x, y).getTile().getId()!=0);// search for a free space
+			level.spawnEnemy(x,y);
 		}
 		
 		

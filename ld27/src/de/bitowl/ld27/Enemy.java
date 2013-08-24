@@ -13,8 +13,8 @@ public class Enemy extends Entity{
 	
 	float time;
 	public Enemy(float pX,float pY){
-		x=pX;
-		y=pY;
+		x=pX*level.tileWidth;
+		y=pY*level.tileHeight;
 		width=32;
 		height=32;
 		damageOnPlayer=1;
@@ -29,13 +29,16 @@ public class Enemy extends Entity{
 	public void update(float pDelta) {
 		time+=pDelta;
 		if(path!=null && pathIndex<path.getLength()){
-			if(time>1){
-				time-=1;
+			if(time>0.5f){
+				time-=0.5f;
 				x=path.getX(pathIndex)*level.tileWidth;
 				y=path.getY(pathIndex)*level.tileHeight;
 				pathIndex++;
 			}else{
+				
 				// TODO interpolate
+				x=interpol(path.getX(pathIndex-1),path.getX(pathIndex),time*2)*level.tileWidth;
+				y=interpol(path.getY(pathIndex-1),path.getY(pathIndex),time*2)*level.tileHeight;
 			}
 		}else{
 			findPlayer();
@@ -65,6 +68,11 @@ public class Enemy extends Entity{
 		}
 		super.update(pDelta);*/
 	}
+	
+	
+	public float interpol(float v0,float v1,float delta){
+		return v0+(v1-v0)*delta;
+	}
 	@Override
 	public void hitByBullet() {
 		kill();
@@ -83,6 +91,7 @@ public class Enemy extends Entity{
 		AStar pathFinder = new AStar(map,heuristic);
 		
 		path=pathFinder.calcShortestPath((int)(x/level.tileWidth),(int)(y/level.tileHeight), (int)(level.player.x/level.tileWidth),(int)(level.player.y/level.tileHeight));
-		pathIndex=0;
+		pathIndex=1;
+		time=0;
 	}
 }

@@ -19,4 +19,13 @@ public class Wall extends Entity{
 		blocking=true;
 		collidable=true;
 	}
+	
+	@Override
+	public void powerByConnection(boolean pOn) {
+		if(pOn){
+			down();
+		}else{
+			up();
+		}
+	}
 }

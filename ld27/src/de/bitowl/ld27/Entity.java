@@ -160,21 +160,22 @@ public class Entity {
 		downright=getTile(rightX,downY);
 	}
 	
-	
+	/**
+	 * returns a tile
+	 * TODO make collisionLayer an int[][]-array so this is faster
+	 */
 	public int getTile(int pX,int pY){
 		if(pX<0){return 0;}
 		if(pY<0){return 1;}
 		if(pX>level.mapWidth-1){return 1;}
 		if(pY>level.mapHeight){return 1;}
-		System.out.println(pX+" "+pY);
+
 		if(level.collisionLayer.getCell(pX, level.collisionLayer.getHeight()-pY-1)==null){
 			return 0;
 		}else{
 			return level.collisionLayer.getCell(pX, level.collisionLayer.getHeight()-pY-1).getTile().getId();
 		}
-		//System.out.println(collisionLayer.getCell(0,0).toString());
-	//	return 1;
-		//.getTile().getId();
+		
 	}
 	
 	/**
@@ -300,4 +301,19 @@ public class Entity {
 		return false;
 	}
 	
+	/**
+	 * some trigger/pressureplate has powered this thing via a colored connection
+	 * 
+	 * @param pOn
+	 */
+	public void powerByConnection(boolean pOn){
+		
+	}
+	/**
+	 * this trigger/pressureplat wants to power a color-connection
+	 * @param pOn
+	 */
+	public void powerConnection(boolean pOn){
+		level.putPowerOnConnection((int)(x/level.tileWidth), (int)(y/level.tileHeight), pOn);
+	}
 }

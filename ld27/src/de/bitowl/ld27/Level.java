@@ -41,6 +41,7 @@ public class Level {
 	int tileWidth;
 	int tileHeight;
 	TiledMapTileLayer collisionLayer;
+	TiledMapTileLayer connectionsLayer;
 	
 	// things on the map
 	Player player;
@@ -145,11 +146,16 @@ public class Level {
 						}
 					}
 				}
+			}else if(layer.getName().equals("connections")){
+				connectionsLayer=(TiledMapTileLayer)layer;
 			}
 			
 		}
 		if(collisionLayer==null){
 			throw new RuntimeException("no collision layer found");
+		}
+		if(connectionsLayer==null){
+			throw new RuntimeException("no connections layer found");
 		}
 		
 
@@ -247,8 +253,36 @@ public class Level {
 	
 	public void dispose(){
 		map.dispose();
+	}
+	
+	public void putPowerOnConnection(int pX,int pY,boolean pOn){
 		
+		// TODO save connectionsLayer in an int[][] array to do not have to call .getCell(pX,pY).getTile().getId() so often
 		
-
+		if(connectionsLayer.getCell(pX, pY)==null){
+			System.err.println("not connected");
+			return;
+		}
+		int color=connectionsLayer.getCell(pX, pY).getTile().getId();
+		System.out.println("found connection: "+color);
+		
+		// find all other entities that are powered by this connection
+		for(int x=0;x<mapWidth;x++){
+			for(int y=0;y<mapHeight;y++){
+				if(connectionsLayer.getCell(x,y)!=null){
+					if(connectionsLayer.getCell(x,y).getTile().getId()==color){
+						System.out.println("connectionpoint at "+x+","+y);
+						// find the entity, that is here
+						for(Entity entity:entities){
+							if(entity.x==x*tileWidth&&entity.y==y*tileHeight){
+								entity.powerByConnection(pOn);
+								break;
+							}
+						}
+						
+					}
+				}
+			}
+		}
 	}
 }

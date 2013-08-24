@@ -14,8 +14,11 @@ public class PressurePlate extends Entity {
 	
 	@Override
 	public void hitByPlayer(boolean pX) {
-		texture=TestScreen.pressurePlateDownT;
-		down=true;
+		if(!down){
+			texture=TestScreen.pressurePlateDownT;
+			down=true;
+			powerConnection(true);
+		}
 		downThisFrame=true;
 	}
 	
@@ -27,6 +30,7 @@ public class PressurePlate extends Entity {
 		}else if(down){
 			texture=TestScreen.pressurePlateT;
 			down=false;
+			powerConnection(false);
 		}
 	}
 
@@ -34,5 +38,6 @@ public class PressurePlate extends Entity {
 		texture=TestScreen.pressurePlateDownT;
 		down=true;
 		downByBarrel=true;
+		powerConnection(true);
 	}
 }

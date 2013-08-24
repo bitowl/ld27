@@ -10,12 +10,17 @@
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.35">
   <data encoding="base64" compression="zlib">
-   eJxjYMANGPHIESM/at7gNm8UDB3AiQNTYh41wah5I9M8ACVTAIs=
+   eJxjYMANGPHIESM/at7gNm8UDB3AiQMTC9DTBil6R80b/OahA3qZBwAuswCR
   </data>
  </layer>
  <layer name="entities" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjZ2BgYMeB0QErFjFceokxDxsg1Tw2PJgU+0gBLFjEmKE0ExTTCpAbrkMJDHf/0QIQCjNqh+NgMA+fnweD+7ABDiqZM1gAAOfNAbY=
+   eJxjZ2BgYMeB0QErFjFceokxDxsg1Tw2PJgU+2CAGPNYsJjDDKWZoJgU87ABDgLuJTVchxIYTv7DFt/MODAlgFCYUTscYeZxMOBOq+SYR6oeXH6mlX8pBdQIq8EEADTmAkY=
+  </data>
+ </layer>
+ <layer name="connections" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjawAgLNoRicoAFHgwDpJhtjgfjA8Yk2DEKBi8wRsLDEYDSsQVBVaMABowG2gFUBgAzjQYE
   </data>
  </layer>
 </map>

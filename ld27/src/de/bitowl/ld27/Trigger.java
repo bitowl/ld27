@@ -31,15 +31,18 @@ public class Trigger extends Entity {
 		if(!triggered){
 			texture=TestScreen.trigger2T;
 			triggered=true;
-			for(Wall wall:level.walls){
+		/*	for(Wall wall:level.walls){
 				wall.down();
-			}
+			}*/
+			powerConnection(true);
+			//level.putPowerOnConnection((int)(x/level.tileWidth), (int)(y/level.tileHeight), true);
 		}else{
 			texture=TestScreen.triggerT;
 			triggered=false;
-			for(Wall wall:level.walls){
+			/*for(Wall wall:level.walls){
 				wall.up();
-			}
+			}*/
+			powerConnection(false);
 		}
 		cooldown=0.3f;
 	}
