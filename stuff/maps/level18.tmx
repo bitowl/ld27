@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="7" height="20" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
  <properties>
-  <property name="description" value="this is a long way for a barrel, but a short time for a puzzle to solve"/>
+  <property name="description" value="more than one solution?"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="256" height="256"/>
  </tileset>
- <layer name="Kachelebene 1" width="7" height="20">
+ <layer name="Kachelebene 1" width="14" height="10">
   <data encoding="base64" compression="zlib">
-   eJwTYmBgUANiITKw3CCWkxuCcujxQG680BIDADaUCvk=
+   eJwTYmBgEELC0kAsQwQWGtU3IvUBAP3aDbc=
   </data>
  </layer>
- <layer name="collision" width="7" height="20">
+ <layer name="collision" width="14" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgYGQgD+DTN9ByjMNMbrAAABzoABc=
+   eJxjYEAFnAzkgVF9I0MfAGjYAFs=
   </data>
  </layer>
- <layer name="entities" width="7" height="20">
+ <layer name="entities" width="14" height="10">
   <data encoding="base64" compression="zlib">
-   eJzjYIAAJgZUwMpAHOAAYmY0MQE8cvj0seFQy0KkWwSQMDEA2T52IvWQCvhw2EcsQNbDj0cdPjlsABb2/Eh6kdm4AAAJAwD/
+   eJxjZYAADgbSgSKUVsIixw2lWaA0L5TWQtJHDsBmFz5AiV3kmiHJQF544gPcePhSZJgH00OqOwEP9gGP
   </data>
  </layer>
- <layer name="connections" width="7" height="20">
+ <layer name="connections" width="14" height="10">
   <data encoding="base64" compression="zlib">
-   eJwzZMAODHGIowNjLGImaDSx+rCJgYApkW4xQsLEqsfGpiYww8EmFhDrd3oBAKtUAzQ=
+   eJwzZYAAQwbqAph5plDaiErmUsscWgNjGptnQiVzSTUHAKaeAf8=
   </data>
  </layer>
 </map>

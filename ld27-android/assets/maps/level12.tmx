@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="6" orientation="orthogonal" tileheight="32" tilewidth="32" version="1.0" width="11">
+ <properties><property name="atlas" value="tileset/packed.atlas"/><property name="blended tiles" value=""/>
+  <property name="description" value="everybody likes to move barrels"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tileheight="32" tilewidth="32">
+  <image height="256" source="tileset.png" width="256"/>
+ </tileset>
+ <layer height="6" name="Kachelebene 1" width="11">
+  <data compression="zlib" encoding="base64">
+   eJyTYmBgUAJiISAWg9LoGCYOUidFQC0MSyGZi029GA5zcanHZS4ut+IzF5vZANl+BV0=
+  </data>
+ </layer>
+ <layer height="6" name="collision" width="11">
+  <data compression="zlib" encoding="base64">
+   eJxjYEAARgbsAJs4LrW4ALp6RgJmkGo+sfpw2QsABkgACw==
+  </data>
+ </layer>
+ <layer height="6" name="entities" opacity="0.75" width="11">
+  <data compression="zlib" encoding="base64">
+   eJzjZ0AFHAzYAbI4MwG1yIAZiU1IPTMBeXLVEgKsQAwAMWwAQQ==
+  </data>
+ </layer>
+ <layer height="6" name="connections" width="11">
+  <data compression="zlib" encoding="base64">
+   eJxjYEAFhgzYATZxXGpxAVLV0wuA3AUAoQwA9g==
+  </data>
+ </layer>
+</map>

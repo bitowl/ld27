@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="5" orientation="orthogonal" tileheight="32" tilewidth="32" version="1.0" width="8">
+ <properties><property name="atlas" value="tileset/packed.atlas"/><property name="blended tiles" value=""/>
+  <property name="description" value="do you have a weapon?"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tileheight="32" tilewidth="32">
+  <image height="256" source="tileset.png" width="256"/>
+ </tileset>
+ <layer height="5" name="Kachelebene 1" width="8">
+  <data compression="zlib" encoding="base64">
+   eJwTYmBgEBrEGADnQALR
+  </data>
+ </layer>
+ <layer height="5" name="collision" width="8">
+  <data compression="zlib" encoding="base64">
+   eJxjYBjcAAAAoAAB
+  </data>
+ </layer>
+ <layer height="5" name="entities" width="8">
+  <data compression="zlib" encoding="base64">
+   eJzjY0AAdgZUwITGR5dHB9SWZwViABX4ADk=
+  </data>
+ </layer>
+ <layer height="5" name="connections" width="8">
+  <data compression="zlib" encoding="base64">
+   eJwzZBi8wBCIASAEAGM=
+  </data>
+ </layer>
+</map>

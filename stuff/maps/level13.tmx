@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="6" height="6" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="7" height="20" tilewidth="32" tileheight="32">
  <properties>
-  <property name="description" value="some things might turn"/>
+  <property name="description" value="this is a long way for a barrel, but a short time for a puzzle to solve"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="256" height="256"/>
  </tileset>
- <layer name="Kachelebene 1" width="6" height="6">
+ <layer name="Kachelebene 1" width="7" height="20">
   <data encoding="base64" compression="zlib">
-   eJwTYmBgEAJiSSgNw1JArITEBtGaaHwYVoTSYki0GBpfCMk8Mah9YlgwAObwAyE=
+   eJwTYmBgUANiITKw3CCWkxuCcujxQG680BIDADaUCvk=
   </data>
  </layer>
- <layer name="collision" width="6" height="6">
+ <layer name="collision" width="7" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYKAeYESiGdH4hNTBMAACAAAM
+   eJxjYGBgYGQgD+DTN9ByjMNMbrAAABzoABc=
   </data>
  </layer>
- <layer name="entities" width="6" height="6">
+ <layer name="entities" width="7" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYCAOsBKpDh1wQGkuKM1CQD0ABigAHA==
+   eJzjYIAAJgZUwMpAHOAAYmY0MQE8cvj0seFQy0KkWwSQMDEA2T52IvWQCvhw2EcsQNbDj0cdPjlsABb2/Eh6kdm4AAAJAwD/
   </data>
  </layer>
- <layer name="connections" width="6" height="6">
+ <layer name="connections" width="7" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYCAOGBGpDh0YotGEzAEAK/gAxw==
+   eJwzZMAODHGIowNjLGImaDSx+rCJgYApkW4xQsLEqsfGpiYww8EmFhDrd3oBAKtUAzQ=
   </data>
  </layer>
 </map>

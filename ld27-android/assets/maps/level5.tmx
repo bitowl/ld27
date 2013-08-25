@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="6" orientation="orthogonal" tileheight="32" tilewidth="32" version="1.0" width="7">
+ <properties><property name="atlas" value="tileset/packed.atlas"/><property name="blended tiles" value=""/>
+  <property name="description" value="water in your way"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tileheight="32" tilewidth="32">
+  <image height="256" source="tileset.png" width="256"/>
+ </tileset>
+ <layer height="6" name="Kachelebene 1" width="7">
+  <data compression="zlib" encoding="base64">
+   eJwTYmBgEIJiaSCWAWJZIFZEEpdCkwOJSeLQBxPTxCOHTZ8kkl0gWhmIVYBYFcoHAFG3BAU=
+  </data>
+ </layer>
+ <layer height="6" name="collision" width="7">
+  <data compression="zlib" encoding="base64">
+   eJxjYEAATgbcYKDlABLMADc=
+  </data>
+ </layer>
+ <layer height="6" name="entities" width="7">
+  <data compression="zlib" encoding="base64">
+   eJxjZaAuYKGyeSDABMQABVgADA==
+  </data>
+ </layer>
+ <layer height="6" name="connections" width="7">
+  <data compression="zlib" encoding="base64">
+   eJwzZKAuMKSyeTAAADGoAGM=
+  </data>
+ </layer>
+</map>

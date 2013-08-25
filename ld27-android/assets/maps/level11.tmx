@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="5" orientation="orthogonal" tileheight="32" tilewidth="32" version="1.0" width="17">
+ <properties><property name="atlas" value="tileset/packed.atlas"/><property name="blended tiles" value=""/>
+  <property name="description" value="minefield"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tileheight="32" tilewidth="32">
+  <image height="256" source="tileset.png" width="256"/>
+ </tileset>
+ <layer height="5" name="Kachelebene 1" width="17">
+  <data compression="zlib" encoding="base64">
+   eJwTZGBgEBwEWAgHlsIiJodHPQgrQjE+NWpALIaGhXDo00JiSxIwF4QBEtAGXQ==
+  </data>
+ </layer>
+ <layer height="5" name="collision" width="17">
+  <data compression="zlib" encoding="base64">
+   eJxjYKAcMFIBk2ofLdxMLQAAE4gAGA==
+  </data>
+ </layer>
+ <layer height="5" name="entities" width="17">
+  <data compression="zlib" encoding="base64">
+   eJxjYIAAASIwLQE/lGYnAoMAKxZ3M5BoBjog1Qx2BuzhBAA4uwH5
+  </data>
+ </layer>
+ <layer height="5" name="connections" width="17">
+  <data compression="zlib" encoding="base64">
+   eJxjYIAAQyA2AmJjIDYBYlMgNgNicyC2AGJLBvoCYyhtikPeCkqD3AVynzmSnBGaWjMkeQs8dpohsQ2htAkWdbCwsGLAHm4AtUEGDA==
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="5" orientation="orthogonal" tileheight="32" tilewidth="32" version="1.0" width="10">
+ <properties><property name="atlas" value="tileset/packed.atlas"/><property name="blended tiles" value=""/>
+  <property name="description" value="new things to play around with"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tileheight="32" tilewidth="32">
+  <image height="256" source="tileset.png" width="256"/>
+ </tileset>
+ <layer height="5" name="Kachelebene 1" width="10">
+  <data compression="zlib" encoding="base64">
+   eJwTYmBg0ARiISRMiI8sBqPFiNBDCOOyF5dZyOIAytMEbw==
+  </data>
+ </layer>
+ <layer height="5" name="collision" width="10">
+  <data compression="zlib" encoding="base64">
+   eJxjYKAOYKSSOeQCAAFIAAI=
+  </data>
+ </layer>
+ <layer height="5" name="entities" width="10">
+  <data compression="zlib" encoding="base64">
+   eJxjYCAPsBCpjguIuYGYh0x7iAGsQAwAD/gAKw==
+  </data>
+ </layer>
+ <layer height="5" name="connections" width="10">
+  <data compression="zlib" encoding="base64">
+   eJxjYCAPGJKpjxYA5BYAHRwAYw==
+  </data>
+ </layer>
+</map>

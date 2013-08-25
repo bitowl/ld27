@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="11" height="6" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="10" height="5" tilewidth="32" tileheight="32">
  <properties>
-  <property name="description" value="everybody likes to move barrels"/>
+  <property name="description" value="new things to play around with"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="256" height="256"/>
  </tileset>
- <layer name="Kachelebene 1" width="11" height="6">
+ <layer name="Kachelebene 1" width="10" height="5">
   <data encoding="base64" compression="zlib">
-   eJyTYmBgUAJiISAWg9LoGCYOUidFQC0MSyGZi029GA5zcanHZS4ut+IzF5vZANl+BV0=
+   eJwTYmBg0ARiISRMiI8sBqPFiNBDCOOyF5dZyOIAytMEbw==
   </data>
  </layer>
- <layer name="collision" width="11" height="6">
+ <layer name="collision" width="10" height="5">
   <data encoding="base64" compression="zlib">
-   eJxjYEAARgbsAJs4LrW4ALp6RgJmkGo+sfpw2QsABkgACw==
+   eJxjYKAOYKSSOeQCAAFIAAI=
   </data>
  </layer>
- <layer name="entities" width="11" height="6" opacity="0.75">
+ <layer name="entities" width="10" height="5">
   <data encoding="base64" compression="zlib">
-   eJxjYEAFHAzYAbI4MwG1yIAZiU1IPTMBeXLVEgKsQAwAIfQAMg==
+   eJxjYCAPsBCpjguIuYGYh0x7iAGsQAwAD/gAKw==
   </data>
  </layer>
- <layer name="connections" width="11" height="6">
+ <layer name="connections" width="10" height="5">
   <data encoding="base64" compression="zlib">
-   eJxjYEAFhgzYATZxXGpxAVLV0wuA3AUAoQwA9g==
+   eJxjYCAPGJKpjxYA5BYAHRwAYw==
   </data>
  </layer>
 </map>

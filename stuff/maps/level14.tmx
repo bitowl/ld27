@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="10" height="7" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="13" height="9" tilewidth="32" tileheight="32">
  <properties>
-  <property name="description" value="spin around, spin around"/>
+  <property name="description" value="there are no hints, go away"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="256" height="256"/>
  </tileset>
- <layer name="Kachelebene 1" width="10" height="7">
+ <layer name="Kachelebene 1" width="13" height="9">
   <data encoding="base64" compression="zlib">
-   eJwTYmBgEAJiKSgNwmJIWAgPFkOjQViRSHUwLAzEIkAsiqYO2X4lIJYGYhkglkUSQzcfhJWBWAWIVfGYh+xXJRz+BQAkVQXi
+   eJwTYmBgECKApYhQg0sPPr3ocqTowUWTopYcfw0FDAAjBAiz
   </data>
  </layer>
- <layer name="collision" width="10" height="7">
+ <layer name="collision" width="13" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYMAEjEgYH2BEo8lRx4mEkdWh289JhPmkmIeuH10eACU8AFM=
+   eJxjYBgFww0AAAHUAAE=
   </data>
  </layer>
- <layer name="entities" width="10" height="7">
+ <layer name="entities" width="13" height="9" opacity="0.9">
   <data encoding="base64" compression="zlib">
-   eJxjZUAF/AykAV4S1SMDFgr0cmExgxLz0AEAKcAAOA==
+   eJzjZxgFrEhsdiJpegJmIBYAYjY8NAOU5gBiAEVsAKE=
   </data>
  </layer>
- <layer name="connections" width="10" height="7">
+ <layer name="connections" width="13" height="9">
   <data encoding="base64" compression="zlib">
-   eJwzZqAMGA2QXkMobYxFjBoAALP8AS0=
+   eJxjYBgFFkhsQyhtDKWNoLQplDahi4swAcgdILcZQ9kmULYpkptAbJBfABR/Az0=
   </data>
  </layer>
 </map>

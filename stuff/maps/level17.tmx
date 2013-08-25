@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="6" height="6" tilewidth="32" tileheight="32">
  <properties>
-  <property name="description" value="more than one solution?"/>
+  <property name="description" value="some things might turn"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="256" height="256"/>
  </tileset>
- <layer name="Kachelebene 1" width="14" height="10">
+ <layer name="Kachelebene 1" width="6" height="6">
   <data encoding="base64" compression="zlib">
-   eJwTYmBgEELC0kAsQwQWGtU3IvUBAP3aDbc=
+   eJwTYmBgEAJiSSgNw1JArITEBtGaaHwYVoTSYki0GBpfCMk8Mah9YlgwAObwAyE=
   </data>
  </layer>
- <layer name="collision" width="14" height="10">
+ <layer name="collision" width="6" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYEAFnAzkgVF9I0MfAGjYAFs=
+   eJxjYKAeYESiGdH4hNTBMAACAAAM
   </data>
  </layer>
- <layer name="entities" width="14" height="10">
+ <layer name="entities" width="6" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjZYAADgbSgSKUVsIixw2lWaA0L5TWQtJHDsBmFz5AiV3kmiHJQF544gPcePhSZJgH00OqOwEP9gGP
+   eJxjYCAOsBKpDh1wQGkuKM1CQD0ABigAHA==
   </data>
  </layer>
- <layer name="connections" width="14" height="10">
+ <layer name="connections" width="6" height="6">
   <data encoding="base64" compression="zlib">
-   eJwzZYAAQwbqAph5plDaiErmUsscWgNjGptnQiVzSTUHAKaeAf8=
+   eJxjYCAOGBGpDh0YotGEzAEAK/gAxw==
   </data>
  </layer>
 </map>

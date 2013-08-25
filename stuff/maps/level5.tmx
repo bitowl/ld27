@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="16" height="10" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="7" height="6" tilewidth="32" tileheight="32">
  <properties>
-  <property name="description" value="invisible labyrinth"/>
+  <property name="description" value="water in your way"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="256" height="256"/>
  </tileset>
- <layer name="Kachelebene 1" width="16" height="10">
+ <layer name="Kachelebene 1" width="7" height="6">
   <data encoding="base64" compression="zlib">
-   eJwTYmBgEMKDJQnIk4sVSVCrRGXzaI21SHCr1AC6EzluNSkMf1Iwsl0A2X4L6g==
+   eJwTYmBgEIJiaSCWAWJZIFZEEpdCkwOJSeLQBxPTxCOHTZ8kkl0gWhmIVYBYFcoHAFG3BAU=
   </data>
  </layer>
- <layer name="collision" width="16" height="10">
+ <layer name="collision" width="7" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYEAFjAyUAXL0M6KxCWFS7CTGPYNBPy4/ouvHpo6W7icGkKIfXS0ALYAAIg==
+   eJxjYEAATgbcYKDlABLMADc=
   </data>
  </layer>
- <layer name="entities" width="16" height="10">
+ <layer name="entities" width="7" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYMAErFjERsEooDZgAWIADqwACg==
+   eJxjZaAuYKGyeSDABMQABVgADA==
   </data>
  </layer>
- <layer name="connections" width="16" height="10">
+ <layer name="connections" width="7" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYMAEhljERsEooDYApTMAefAAYw==
+   eJwzZKAuMKSyeTAAADGoAGM=
   </data>
  </layer>
 </map>

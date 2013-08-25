@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.tiled.AtlasTmxMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -69,7 +70,7 @@ public class Level {
 		
 		
 		// load a test map
-		map=new TmxMapLoader().load("maps/level"+pLevel+".tmx");
+		map=new AtlasTmxMapLoader().load("maps/level"+pLevel+".tmx");
 		
 		description=(String) map.getProperties().get("description");
 		if(description==null){

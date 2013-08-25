@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="3" orientation="orthogonal" tileheight="32" tilewidth="32" version="1.0" width="10">
+ <properties><property name="atlas" value="tileset/packed.atlas"/><property name="blended tiles" value=""/>
+  <property name="description" value="do you know how to control him?"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tileheight="32" tilewidth="32">
+  <image height="256" source="tileset.png" width="256"/>
+ </tileset>
+ <layer height="3" name="Kachelebene 1" width="10">
+  <data compression="zlib" encoding="base64">
+   eJwTYmBgEBoADACDQAId
+  </data>
+ </layer>
+ <layer height="3" name="collision" width="10">
+  <data compression="zlib" encoding="base64">
+   eJxjYBgYAAAAeAAB
+  </data>
+ </layer>
+ <layer height="3" name="entities" width="10">
+  <data compression="zlib" encoding="base64">
+   eJxjYCAd8GERYyXRDAAFIAAU
+  </data>
+ </layer>
+ <layer height="3" name="connections" width="10">
+  <data compression="zlib" encoding="base64">
+   eJxjYCAdGBEphg8AABcgAGU=
+  </data>
+ </layer>
+</map>
