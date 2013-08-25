@@ -1,15 +1,11 @@
 package de.bitowl.ld27;
 
-import com.badlogic.gdx.ApplicationListener;
+
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import de.bitowl.ld27.menus.CreditsMenu;
+import de.bitowl.ld27.menus.MainMenu;
+import de.bitowl.ld27.menus.MenuScreen;
 
 public class LdGame extends Game {
 
@@ -21,7 +17,8 @@ public class LdGame extends Game {
 	@Override
 	public void create() {
 		current=this;
-		setScreen(new TestScreen());
+		new TestScreen(); // TODO load assets somewhere else
+		setScreen(new CreditsMenu());
 	}
 	
 	

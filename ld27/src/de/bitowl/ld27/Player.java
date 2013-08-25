@@ -14,6 +14,8 @@ public class Player extends Entity{
 	Animation animation;
 	float animTime;
 
+	boolean flipped;
+	
 	public Player(){
 		offsetX=3;
 		offsetY=3;
@@ -36,6 +38,26 @@ public class Player extends Entity{
 			if(animTime>animation.animationDuration){
 				animTime-=animation.animationDuration;
 			}
+			if(speedX>0){
+				if(flipped){
+					flipEverything();
+					flipped=false;
+				}
+			}else{
+				if(!flipped){
+					flipEverything();
+					flipped=true;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * flip all keyframes of this charakter
+	 */
+	public void flipEverything(){
+		for(float x=0;x<animation.animationDuration;x+=animation.frameDuration){
+			animation.getKeyFrame(x).flip(true, false);
 		}
 	}
 

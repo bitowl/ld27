@@ -44,7 +44,63 @@ spikes
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 2
+  index: 13
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 11
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 12
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 16
 spikes
   rotate: false
   xy: 138, 2
@@ -54,22 +110,43 @@ spikes
   index: 1
 spikes
   rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 14
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
+spikes
+  rotate: false
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+spikes
+  rotate: false
   xy: 172, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 3
+  index: 10
 spikes
   rotate: false
   xy: 206, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 4
+  index: 15
 spikes
   rotate: false
   xy: 240, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 5
+  index: 3

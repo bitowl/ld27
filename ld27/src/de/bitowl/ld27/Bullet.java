@@ -1,7 +1,5 @@
 package de.bitowl.ld27;
 
-import com.badlogic.gdx.Gdx;
-
 public class Bullet extends Entity{
 	/*float x;
 	float y;

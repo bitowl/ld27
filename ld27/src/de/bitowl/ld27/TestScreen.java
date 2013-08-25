@@ -1,18 +1,21 @@
 package de.bitowl.ld27;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+
+import de.bitowl.ld27.menus.MainMenu;
+import de.bitowl.ld27.menus.MenuScreen;
 
 public class TestScreen extends AbstractScreen {
 
@@ -87,7 +90,6 @@ public class TestScreen extends AbstractScreen {
 		
 		levelNr=0;
 		level=new Level(levelNr);
-		
 		Gdx.input.setInputProcessor(new KeyboardControl());
 		Controllers.addListener(new GamepadControl());
 		
@@ -98,8 +100,6 @@ public class TestScreen extends AbstractScreen {
 		font=new BitmapFont(Gdx.files.internal("fonts/first.fnt"),new TextureRegion(texture),false);
 		//font=new BitmapFont();
 		//font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-
 	}
 	
 	@Override
@@ -219,38 +219,34 @@ public class TestScreen extends AbstractScreen {
 	
 	
 	class KeyboardControl extends InputAdapter{
+		public KeyboardControl() {
+			System.err.println("-\n–\n-\nKEYBOARD CONTROLL");
+		}
 		@Override
 		public boolean keyDown(int keycode) {
-			switch(keycode){
-				case Keys.LEFT:
-					level.player.speedX=-1;
-					break;
-				case Keys.RIGHT:
-					level.player.speedX=1;
-					break;
-				case Keys.DOWN:
-					level.player.speedY=-1;
-					break;
-				case Keys.UP:
-					level.player.speedY=1;
-					break;
-				case Keys.SPACE:
-					shoot();
-				break;
+			System.err.println("KEY DOWN: "+keycode);
+			if(keycode==Options.KEYBOARD_LEFT){
+				level.player.speedX=-1;
+			}else if(keycode==Options.KEYBOARD_RIGHT){
+				level.player.speedX=1;
+			}else if(keycode==Options.KEYBOARD_DOWN){
+				level.player.speedY=-1;
+			}else if(keycode==Options.KEYBOARD_UP){
+				level.player.speedY=1;
+			}else if(keycode==Options.KEYBOARD_SHOOT){
+				shoot();
+			}else if(keycode==Options.KEYBOARD_BACK){
+				// TODO pause menu
+				LdGame.switchScreen(new MainMenu());
 			}
 			return false;
 		}
 		@Override
 		public boolean keyUp(int keycode) {
-			switch(keycode){
-				case Keys.LEFT:
-				case Keys.RIGHT:
-					level.player.speedX=0;
-					break;
-				case Keys.DOWN:
-				case Keys.UP:
-					level.player.speedY=0;
-					break;
+			if(keycode==Options.KEYBOARD_LEFT || keycode==Options.KEYBOARD_RIGHT){
+				level.player.speedX=0;
+			}else if(keycode==Options.KEYBOARD_DOWN || keycode==Options.KEYBOARD_UP){
+				level.player.speedY=0;
 			}
 			return false;
 		}
@@ -268,13 +264,7 @@ public class TestScreen extends AbstractScreen {
 	class GamepadControl extends ControllerAdapter{
 		// just inserted my values here
 		// TODO add an option screen for this
-		final int HORIZONTAL_AXIS_POS=0;boolean HORIZONTAL_AXIS_POS_V=true;
-		final int HORIZONTAL_AXIS_NEG=0;boolean HORIZONTAL_AXIS_NEG_V=false;
-		
-		final int VERTICAL_AXIS_POS=1;boolean VERTICAL_AXIS_POS_V=false;
-		final int VERTICAL_AXIS_NEG=1;boolean VERTICAL_AXIS_NEG_V=true;
-		
-		int SHOOT_BULLET=1;
+
 
 		@Override
 		public boolean axisMoved(Controller controller, int axisIndex,
@@ -283,28 +273,28 @@ public class TestScreen extends AbstractScreen {
 			// add a dead zone
 			if(Math.abs(value)<0.1){value=0;}
 			
-			if(axisIndex==HORIZONTAL_AXIS_POS){
-				if(HORIZONTAL_AXIS_POS_V==value>0 || value==0){
-					level.player.speedX=value*(HORIZONTAL_AXIS_POS_V?1:-1);
+			if(axisIndex==Options.HORIZONTAL_AXIS_POS){
+				if(Options.HORIZONTAL_AXIS_POS_V==value>0 || value==0){
+					level.player.speedX=value*(Options.HORIZONTAL_AXIS_POS_V?1:-1);
 				}
 			}
 				
-			if(axisIndex==HORIZONTAL_AXIS_NEG){
-				if(HORIZONTAL_AXIS_NEG_V==value>0 || value==0){
-					level.player.speedX=value*(HORIZONTAL_AXIS_NEG_V?-1:1);
+			if(axisIndex==Options.HORIZONTAL_AXIS_NEG){
+				if(Options.HORIZONTAL_AXIS_NEG_V==value>0 || value==0){
+					level.player.speedX=value*(Options.HORIZONTAL_AXIS_NEG_V?-1:1);
 				}
 			}
 					
 			
-			if(axisIndex==VERTICAL_AXIS_POS){
-				if(VERTICAL_AXIS_POS_V==value>0 || value==0){
-					level.player.speedY=value*(VERTICAL_AXIS_POS_V?1:-1);
+			if(axisIndex==Options.VERTICAL_AXIS_POS){
+				if(Options.VERTICAL_AXIS_POS_V==value>0 || value==0){
+					level.player.speedY=value*(Options.VERTICAL_AXIS_POS_V?1:-1);
 				}
 			}
 				
-			if(axisIndex==VERTICAL_AXIS_NEG){
-				if(VERTICAL_AXIS_NEG_V==value>0 || value==0){
-					level.player.speedY=value*(VERTICAL_AXIS_NEG_V?-1:1);
+			if(axisIndex==Options.VERTICAL_AXIS_NEG){
+				if(Options.VERTICAL_AXIS_NEG_V==value>0 || value==0){
+					level.player.speedY=value*(Options.VERTICAL_AXIS_NEG_V?-1:1);
 				}
 			}
 			return false;
@@ -312,8 +302,11 @@ public class TestScreen extends AbstractScreen {
 		@Override
 		public boolean buttonDown(Controller controller, int buttonIndex) {
 			
-			if(buttonIndex==SHOOT_BULLET){
+			if(buttonIndex==Options.CONTROLLER_SHOOT){
 				shoot();
+			}else if(buttonIndex==Options.CONTROLLER_BACK){
+				// TODO pause menu
+				LdGame.switchScreen(new MainMenu());
 			}
 			return false;
 		}

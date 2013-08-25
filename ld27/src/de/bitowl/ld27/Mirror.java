@@ -1,7 +1,5 @@
 package de.bitowl.ld27;
 
-import java.nio.file.attribute.UserPrincipalLookupService;
-
 public class Mirror extends Entity {
 	
 	final static int UPLEFT=0;

@@ -2,6 +2,7 @@ package de.bitowl.ld27;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 
 public class Spike extends Entity {
 	
@@ -17,7 +18,8 @@ public class Spike extends Entity {
 		height=25;
 		collidable=true;
 		blocking=true;
-		animation=new Animation(0.4f, TestScreen.atlas.findRegions("spike"));
+		animation=new Animation(0.2f, TestScreen.atlas.findRegions("spikes"));
+		animTime=MathUtils.random(animation.animationDuration); // so they do not all animate the same
 	}
 	@Override
 	public void update(float pDelta) {
