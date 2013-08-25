@@ -26,6 +26,13 @@ public class AStar {
 
     public Path calcShortestPath(int startX, int startY, int goalX, int goalY) {
 
+    		if(startX>=map.getMapWith() ||
+    			goalX>=map.getMapWith() ||
+    			startY>=map.getMapHeight() ||
+    			goalY>=map.getMapHeight() 
+    				){
+    			return null;
+    		}
             //mark start and goal node
             map.setStartLocation(startX, startY);
             map.setGoalLocation(goalX, goalY);

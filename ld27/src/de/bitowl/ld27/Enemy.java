@@ -50,14 +50,14 @@ public class Enemy extends Entity{
 			if(time>0.5f){
 				//time-=0.5f;
 				time=0;
-				x=path.getX(pathIndex)*level.tileWidth;
-				y=path.getY(pathIndex)*level.tileHeight;
+				x=path.getX(pathIndex)*level.tileWidth + offsetX;
+				y=path.getY(pathIndex)*level.tileHeight + offsetY;
 				pathIndex++;
 			}else{
 				
 				// TODO interpolate
-				x=interpol(path.getX(pathIndex-1),path.getX(pathIndex),time*2)*level.tileWidth;
-				y=interpol(path.getY(pathIndex-1),path.getY(pathIndex),time*2)*level.tileHeight;
+				x=interpol(path.getX(pathIndex-1),path.getX(pathIndex),time*2)*level.tileWidth + offsetX;
+				y=interpol(path.getY(pathIndex-1),path.getY(pathIndex),time*2)*level.tileHeight + offsetY;
 			}
 		}else{
 			if(newPathTime<=0){

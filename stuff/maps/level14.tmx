@@ -18,12 +18,12 @@
  </layer>
  <layer name="entities" width="10" height="7">
   <data encoding="base64" compression="zlib">
-   eJxjZUAF/AykAV4S1SMDFgr0cmExA5t5XFjEiAEAK/AAQg==
+   eJxjZUAF/AykAV4S1SMDFgr0cmExgxLz0AEAKcAAOA==
   </data>
  </layer>
  <layer name="connections" width="10" height="7">
   <data encoding="base64" compression="zlib">
-   eJwzZqAMGA2QXkMobYxFDJs6UgEAvrQBXg==
+   eJwzZqAMGA2QXkMobYxFjBoAALP8AS0=
   </data>
  </layer>
 </map>
