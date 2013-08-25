@@ -5,7 +5,7 @@ package de.bitowl.ld27.astar;
 * as the next best tile.
 * http://code.google.com/p/a-star-java/source/browse/AStar/src/aStar/heuristics/ClosestHeuristic.java?r=7
 */
-public class ClosestHeuristic implements AStarHeuristic {
+public class ClosestHeuristic{
 
        public float getEstimatedDistanceToGoal(int startX, int startY, int goalX, int goalY) {        
                float dx = goalX - startX;

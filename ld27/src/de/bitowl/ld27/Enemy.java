@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import de.bitowl.ld27.astar.AStar;
-import de.bitowl.ld27.astar.AStarHeuristic;
 import de.bitowl.ld27.astar.AreaMap;
 import de.bitowl.ld27.astar.ClosestHeuristic;
 import de.bitowl.ld27.astar.Node;
@@ -117,7 +116,7 @@ public class Enemy extends Entity{
 		// http://code.google.com/p/a-star-java/source/browse/AStar/src/aStar/TestAStar.java?r=7
 		AreaMap map=new AreaMap(level.mapWidth,level.mapHeight,level.obstacleMap);
 		
-		AStarHeuristic heuristic = new ClosestHeuristic();
+		ClosestHeuristic heuristic = new ClosestHeuristic();
 		
 		AStar pathFinder = new AStar(map,heuristic);
 		

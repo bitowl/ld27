@@ -16,17 +16,13 @@ public class AreaMap {
     private int goalLocationY = 0;
     private int[][] obstacleMap;
 
-    private Logger log = new Logger();
-   
     public AreaMap(int mapWith, int mapHeight, int[][] obstacleMap) {
             this.mapWith = mapWith;
             this.mapHeight = mapHeight;
             this.obstacleMap = obstacleMap;
            
             createMap();
-            log.addToLog("\tMap Created");
             registerEdges();
-            log.addToLog("\tMap Node edges registered");
     }
     private void createMap() {
             Node node;

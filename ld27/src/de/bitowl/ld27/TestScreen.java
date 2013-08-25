@@ -1,8 +1,15 @@
 package de.bitowl.ld27;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Net.HttpMethods;
+import com.badlogic.gdx.Net.HttpRequest;
+import com.badlogic.gdx.Net.HttpResponse;
+import com.badlogic.gdx.Net.HttpResponseListener;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
@@ -14,6 +21,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.net.HttpParametersUtils;
 
 import de.bitowl.ld27.menus.CreditsMenu;
 import de.bitowl.ld27.menus.MainMenu;
@@ -55,6 +63,7 @@ public class TestScreen extends AbstractScreen {
 	static TextureAtlas atlas;
 	
 	public int levelNr;
+	float levelTime;
 	
 	
 	public TestScreen(int pLevel) {
@@ -91,6 +100,7 @@ public class TestScreen extends AbstractScreen {
 		
 		levelNr=pLevel;
 		level=new Level(levelNr);
+		levelTime=0;
 		Gdx.input.setInputProcessor(new KeyboardControl());
 		
 		
@@ -110,6 +120,7 @@ public class TestScreen extends AbstractScreen {
 	public void render(float delta) {
 		super.render(delta);
 		
+		levelTime+=delta;
 		spawnCounter+=delta;
 		if(spawnCounter>10){
 			spawnCounter-=10;
@@ -333,13 +344,16 @@ public class TestScreen extends AbstractScreen {
 		
 		level=new Level(levelNr);
 		spawnCounter=0;
+		spawnAmount=1;
+		levelTime=0;
 		throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P
 	}
 
 	public void restartLevel() {
 		level=new Level(levelNr);
 		spawnCounter=0;
-		spawnAmount=1;
+		spawnAmount++;
+		levelTime=0;
 		throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P		
 	}
 	

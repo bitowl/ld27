@@ -214,6 +214,7 @@ public class OptionsMenu extends MenuScreen{
 		}
 	}
 	class ControllerListener extends ControllerAdapter{
+		@SuppressWarnings("incomplete-switch")
 		@Override
 		public boolean buttonDown(Controller controller, int buttonIndex) {
 			if(listeningController==OptionKeys.SHOOT||listeningController==OptionKeys.BACK){
@@ -232,6 +233,7 @@ public class OptionsMenu extends MenuScreen{
 				return false;
 			}
 		}
+		@SuppressWarnings("incomplete-switch")
 		@Override
 		public boolean axisMoved(Controller controller, int axisIndex,
 				float value) {

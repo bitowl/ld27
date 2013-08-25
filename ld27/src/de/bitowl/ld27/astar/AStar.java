@@ -8,20 +8,15 @@ import java.util.Collections;
  */
 public class AStar {
     private AreaMap map;
-    private AStarHeuristic heuristic;
-    //private int startX;
-    //private int startY;
-    //private int goalX;
-    //private int goalY;
+    private ClosestHeuristic heuristic;
     /**
      * closedList The list of Nodes not searched yet, sorted by their distance to the goal as guessed by our heuristic.
      */
     private ArrayList<Node> closedList;
     private SortedNodeList openList;
     private Path shortestPath;
-    Logger log = new Logger();
 
-    public AStar(AreaMap map, AStarHeuristic heuristic) {
+    public AStar(AreaMap map, ClosestHeuristic heuristic) {
             this.map = map;
             this.heuristic = heuristic;
 
@@ -30,10 +25,6 @@ public class AStar {
     }
 
     public Path calcShortestPath(int startX, int startY, int goalX, int goalY) {
-            //this.startX = startX;
-            //this.startY = startY;
-            //this.goalX = goalX;
-            //this.goalY = goalY;
 
             //mark start and goal node
             map.setStartLocation(startX, startY);
