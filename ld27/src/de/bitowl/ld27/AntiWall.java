@@ -14,17 +14,17 @@ public class AntiWall extends Entity{
 		x=pX*level.tileWidth;y=pY*level.tileHeight+offsetY;
 		width=32;
 		height=22;
-		texture=TestScreen.wallOpenT;
+		texture=TestScreen.atlas.findRegion("wall_down");
 		blocking=false;
 		collidable=false;
 	}
 	public void down(){
-		texture=TestScreen.wallOpenT;
+		texture=TestScreen.atlas.findRegion("wall_down");
 		blocking=false;
 		collidable=false;
 	}
 	public void up(){
-		texture=TestScreen.wallT;
+		texture=TestScreen.atlas.findRegion("wall");
 		blocking=true;
 		collidable=true;
 	}

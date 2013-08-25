@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 
 import de.bitowl.ld27.menus.CreditsMenu;
 import de.bitowl.ld27.menus.MainMenu;
@@ -25,12 +26,11 @@ public class TestScreen extends AbstractScreen {
 	
 	Level level;
 	
-	float spawnCounter;
+	float spawnCounter; // when do the enemies spawn?
+	int spawnAmount=1; // how many enemies spawn this time
 	
 	BitmapFont font;
-	// TODO handle them somewhere else
-	// TODO put them in a texture atlas
-	static Texture playerT;
+	/*static Texture playerT;
 	static Texture bulletT;
 	static Texture enemyT;
 	static Texture chestT;
@@ -53,15 +53,16 @@ public class TestScreen extends AbstractScreen {
 	static Texture mirrorUpRightT;
 	static Texture mirrorDownLeftT;
 	static Texture mirrorDownRightT;
-	static Texture spikeT;
+	static Texture spikeT;*/
 	static TextureAtlas atlas;
 	
 	public int levelNr;
 	
+	
 	public TestScreen(int pLevel) {
 
 		//TODO handle textures somewhere else
-		playerT=new Texture(Gdx.files.internal("images/player.png"));
+	/*	playerT=new Texture(Gdx.files.internal("images/player.png"));
 		bulletT=new Texture(Gdx.files.internal("images/bullet.png"));
 		enemyT=new Texture(Gdx.files.internal("images/enemy.png"));
 		chestT=new Texture(Gdx.files.internal("images/chest.png"));
@@ -84,7 +85,7 @@ public class TestScreen extends AbstractScreen {
 		mirrorDownRightT=new Texture(Gdx.files.internal("images/mirror_rd.png"));
 		pressurePlatehT=new Texture(Gdx.files.internal("images/pressureplateh.png"));
 		pressurePlatehDownT=new Texture(Gdx.files.internal("images/pressureplateh_down.png"));
-		spikeT=new Texture(Gdx.files.internal("images/spikes.png"));
+		spikeT=new Texture(Gdx.files.internal("images/spikes.png"));*/
 		
 		atlas=new TextureAtlas(Gdx.files.internal("images/textures.atlas"));
 		
@@ -93,7 +94,7 @@ public class TestScreen extends AbstractScreen {
 		levelNr=pLevel;
 		level=new Level(levelNr);
 		Gdx.input.setInputProcessor(new KeyboardControl());
-		Controllers.addListener(new GamepadControl());
+		
 		
 		Texture texture = new Texture(Gdx.files.internal("fonts/first.png"));
 		//texture.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear); 
@@ -117,11 +118,14 @@ public class TestScreen extends AbstractScreen {
 			// SPAWN DA ENEMIES
 			int x;
 			int y;
-			do{
-			x=MathUtils.random(level.mapWidth-1);
-			y=MathUtils.random(level.mapHeight-1);
-			}while(level.collisionLayer.getCell(x, y)!=null&&level.collisionLayer.getCell(x, y).getTile().getId()!=0);// search for a free space
-			level.spawnEnemy(x,y);
+			for(int i=0;i<spawnAmount;i++){
+				do{
+					x=MathUtils.random(level.mapWidth-1);
+					y=MathUtils.random(level.mapHeight-1);
+				}while(level.collisionLayer.getCell(x, y)!=null&&level.collisionLayer.getCell(x, y).getTile().getId()!=0  && !new Rectangle(x*level.tileWidth,y*level.tileHeight,32,32).overlaps(level.player.getRectangle()));// search for a free space
+				level.spawnEnemy(x,y);
+			}
+			spawnAmount++;
 		}
 		
 		
@@ -183,7 +187,7 @@ public class TestScreen extends AbstractScreen {
 		super.dispose();
 		
 		// TODO handle textures somewhere else
-		playerT.dispose();
+		/*playerT.dispose();
 		bulletT.dispose();
 		enemyT.dispose();
 		chestT.dispose();
@@ -206,7 +210,8 @@ public class TestScreen extends AbstractScreen {
 		mirrorUpRightT.dispose();
 		pressurePlatehT.dispose();
 		pressurePlatehDownT.dispose();
-		spikeT.dispose();
+		spikeT.dispose();*/
+		atlas.dispose();
 		
 		
 		level.dispose();
@@ -260,9 +265,7 @@ public class TestScreen extends AbstractScreen {
 	/**
 	 * epic controls via gamepad
 	 * just because I now have one
-	 * 
-	 * TODO make an even more epic option screen to support every gamepad :D
-	 *  
+	 *   
 	 * @author bitowl
 	 *
 	 */
@@ -323,7 +326,7 @@ public class TestScreen extends AbstractScreen {
 		if(levelNr>Options.LEVEL_COUNT){
 			// TODO win message
 			LdGame.switchScreen(new CreditsMenu());
-			return;
+			throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P
 		}
 		
 		Preferences prefs=Gdx.app.getPreferences("level");
@@ -338,8 +341,18 @@ public class TestScreen extends AbstractScreen {
 	public void restartLevel() {
 		level=new Level(levelNr);
 		spawnCounter=0;
+		spawnAmount=1;
 		throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P		
 	}
 	
-	
+	GamepadControl control;
+	@Override
+	public void show() {
+		control=new GamepadControl();
+		Controllers.addListener(control);
+	}
+	@Override
+	public void hide() {
+		Controllers.removeListener(control);
+	}
 }

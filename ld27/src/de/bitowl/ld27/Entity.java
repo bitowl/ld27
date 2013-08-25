@@ -2,6 +2,7 @@ package de.bitowl.ld27;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Entity implements Comparable<Entity>{
@@ -24,7 +25,7 @@ public class Entity implements Comparable<Entity>{
 	Level level;
 	float SPEED=200;
 	
-	Texture texture;
+	AtlasRegion texture;
 	
 	float newX;
 	float newY;
@@ -214,12 +215,6 @@ public class Entity implements Comparable<Entity>{
 	public Entity checkEntities(float pX,float pY,boolean x){
 		for(Entity entity:level.entities){
 			if(entity.collidable && entity!=this && entity.getRectangle().overlaps(getRectangle(pX,pY))){
-				
-				
-				// TODO add some "bouncing" code :/ never got that right :/ maybe exploding monsters? :P
-				//life-=entity.damageOnPlayer;
-				
-				//entity.hitByPlayer();
 				
 				hitEntity(entity,x);
 				

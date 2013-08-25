@@ -17,7 +17,7 @@ public class Trigger extends Entity {
 		height=27;
 		collidable=true;
 		blocking=true;
-		texture=TestScreen.triggerT;
+		texture=TestScreen.atlas.findRegion("trigger");
 		sendsPower=true;
 	}
 	@Override
@@ -33,7 +33,7 @@ public class Trigger extends Entity {
 			return;
 		}
 		if(!triggered){
-			texture=TestScreen.trigger2T;
+			texture=TestScreen.atlas.findRegion("trigger_triggered");
 			triggered=true;
 		/*	for(Wall wall:level.walls){
 				wall.down();
@@ -41,7 +41,7 @@ public class Trigger extends Entity {
 			powerConnection(true);
 			//level.putPowerOnConnection((int)(x/level.tileWidth), (int)(y/level.tileHeight), true);
 		}else{
-			texture=TestScreen.triggerT;
+			texture=TestScreen.atlas.findRegion("trigger");
 			triggered=false;
 			/*for(Wall wall:level.walls){
 				wall.up();

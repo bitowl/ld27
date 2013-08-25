@@ -11,7 +11,7 @@ public class Barrel extends Entity{
 		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
 		width=24;
 		height=31;
-		texture=TestScreen.barrelT;
+		texture=TestScreen.atlas.findRegion("barrel");
 		collidable=true;
 		blocking=true;
 	}
@@ -19,8 +19,10 @@ public class Barrel extends Entity{
 	public void hitByPlayer(boolean pX) {
 		if(!open){
 			// first remove the heavy loot from the barrel
-			texture=TestScreen.barrelOpenT;
+			texture=TestScreen.atlas.findRegion("barrel_open");
 			open=true;
+			// moved
+			level.obstacleMap[tileX][tileY]=0;
 		}else{
 			// move the empty barrel
 			if(pX){

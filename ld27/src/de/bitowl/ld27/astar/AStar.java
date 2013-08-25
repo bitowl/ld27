@@ -123,7 +123,7 @@ public class AStar {
                                     System.out.print("s");
                             } else if (node.isGoal) {
                                     System.out.print("g");
-                            } else if (shortestPath.contains(node.getX(), node.getY())) {
+                            } else if (shortestPath!=null && shortestPath.contains(node.getX(), node.getY())) {
                                     System.out.print("¤");
                             } else {
                                     System.out.print(" ");

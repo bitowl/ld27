@@ -7,7 +7,7 @@ public class Exit extends Entity {
 		x=pX*level.tileWidth;y=pY*level.tileHeight;
 		width=32;
 		height=32;
-		texture=TestScreen.exitT;
+		texture=TestScreen.atlas.findRegion("exit");
 		collidable=true;
 		blocking=true;
 	}
@@ -15,10 +15,10 @@ public class Exit extends Entity {
 	public void powerByConnection(boolean pOn) {
 		open=pOn;
 		if(pOn){
-			texture=TestScreen.exitOpenT;
+			texture=TestScreen.atlas.findRegion("exit_open");
 			blocking=false;
 		}else{
-			texture=TestScreen.exitT;
+			texture=TestScreen.atlas.findRegion("exit");
 		}
 	}
 	@Override

@@ -11,7 +11,7 @@ public class PressurePlate extends Entity {
 		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
 		width=31;
 		height=12;
-		texture=TestScreen.pressurePlateT;
+		texture=TestScreen.atlas.findRegion("pressureplate");
 		collidable=true;
 		sendsPower=true;
 	}
@@ -19,7 +19,7 @@ public class PressurePlate extends Entity {
 	@Override
 	public void hitByPlayer(boolean pX) {
 		if(!down){
-			texture=TestScreen.pressurePlateDownT;
+			texture=TestScreen.atlas.findRegion("pressureplate_down");
 			down=true;
 			powerConnection(true);
 		}
@@ -32,14 +32,14 @@ public class PressurePlate extends Entity {
 		if((down && downThisFrame) || downByBarrel) {
 			downThisFrame=false;
 		}else if(down){
-			texture=TestScreen.pressurePlateT;
+			texture=TestScreen.atlas.findRegion("pressureplate");
 			down=false;
 			powerConnection(false);
 		}
 	}
 
 	public void hitByBarrel() {
-		texture=TestScreen.pressurePlateDownT;
+		texture=TestScreen.atlas.findRegion("pressureplate_down");
 		down=true;
 		downByBarrel=true;
 		powerConnection(true);

@@ -6,16 +6,19 @@ public class Crate extends Entity {
 		x=pX*level.tileWidth;y=pY*level.tileHeight;
 		width=32;
 		height=32;
-		texture=TestScreen.crateT;
+		texture=TestScreen.atlas.findRegion("crate");
 		collidable=true;
 		blocking=true;
 		sendsPower=true;
 	}
 	@Override
 	public void hitByBullet() {
-		texture=TestScreen.crateDestroyedT;
+		texture=TestScreen.atlas.findRegion("crate_destroyed");
 		collidable=false;
 		blocking=false;
+		
+		level.obstacleMap[tileX][tileY]=0;
+		
 		powerConnection(true);
 	}
 }

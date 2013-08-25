@@ -27,7 +27,7 @@ public class Node implements Comparable<Node> {
     boolean isStart;
     boolean isGoal;
    
-    Node(int x, int y) {
+    public Node(int x, int y) {
             neighborList = new ArrayList<Node>();
             this.x = x;
             this.y = y;

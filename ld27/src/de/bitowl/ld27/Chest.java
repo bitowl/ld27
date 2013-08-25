@@ -9,14 +9,14 @@ public class Chest extends Entity {
 		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
 		width=28;
 		height=25;
-		texture=TestScreen.chestT;
+		texture=TestScreen.atlas.findRegion("chest");
 		collidable=true;
 		blocking=true;
 	}
 	@Override
 	public void hitByPlayer(boolean pX) {
 		if(!open){
-			texture=TestScreen.chestOpenT;
+			texture=TestScreen.atlas.findRegion("chest_open");
 			open=true;
 		}
 		

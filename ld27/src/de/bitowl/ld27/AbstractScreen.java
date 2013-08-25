@@ -2,6 +2,7 @@ package de.bitowl.ld27;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -13,6 +14,8 @@ public abstract class AbstractScreen implements Screen{
 	public AbstractScreen(){
 		batch=new SpriteBatch();
 		camera=new LetterboxCamera(800, 480);
+		Gdx.input.setInputProcessor(null);
+		
 	}
 	
 	@Override

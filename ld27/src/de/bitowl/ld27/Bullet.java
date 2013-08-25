@@ -26,7 +26,7 @@ public class Bullet extends Entity{
 		height=8;
 		
 		SPEED=400;
-		texture=TestScreen.bulletT;
+		texture=TestScreen.atlas.findRegion("bullet");
 		testOnOtherEntities=true;
 	}
 	@Override
@@ -60,12 +60,12 @@ public class Bullet extends Entity{
 	public void hitEntity(Entity pEntity,boolean pX) {
 		// bullets are killed by other entities
 		//
-		if(pEntity instanceof Trigger || pEntity instanceof Chest || pEntity instanceof Barrel || pEntity instanceof Wall){
+		if(pEntity instanceof Trigger || pEntity instanceof Chest || pEntity instanceof Barrel || pEntity instanceof Wall || pEntity instanceof AntiWall){
 			bounce(pX);
 			pEntity.hitByBullet();
 		}else if(pEntity instanceof PressurePlate){
 			
-		}else if(pEntity instanceof Mirror){ // TODO add high physics mirror logic here
+		}else if(pEntity instanceof Mirror){ // epic high physics mirror logic here
 			Mirror mirror=(Mirror)pEntity;
 			switch(mirror.type){
 				case Mirror.UPLEFT:

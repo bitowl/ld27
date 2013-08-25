@@ -9,7 +9,7 @@ public class HumanPressurePlate extends Entity {
 		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
 		width=29;
 		height=9;
-		texture=TestScreen.pressurePlatehT;
+		texture=TestScreen.atlas.findRegion("pressureplateh");
 		collidable=true;
 		sendsPower=true;
 	}
@@ -17,7 +17,7 @@ public class HumanPressurePlate extends Entity {
 	@Override
 	public void hitByPlayer(boolean pX) {
 		if(!down){
-			texture=TestScreen.pressurePlatehDownT;
+			texture=TestScreen.atlas.findRegion("pressureplateh_down");
 			down=true;
 			powerConnection(true);
 		}

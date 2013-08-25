@@ -7,12 +7,15 @@ import de.bitowl.ld27.astar.AStar;
 import de.bitowl.ld27.astar.AStarHeuristic;
 import de.bitowl.ld27.astar.AreaMap;
 import de.bitowl.ld27.astar.ClosestHeuristic;
+import de.bitowl.ld27.astar.Node;
 import de.bitowl.ld27.astar.Path;
 
 public class Enemy extends Entity{
 
 	Path path;
 	int pathIndex;
+	
+	float newPathTime;
 	
 	float time;
 	
@@ -36,10 +39,16 @@ public class Enemy extends Entity{
 	}
 	@Override
 	public void update(float pDelta) {
+		
+		if(newPathTime>0){
+			newPathTime-=pDelta;
+		}
+		
 		time+=pDelta;
 		if(path!=null && pathIndex<path.getLength()){
 			if(time>0.5f){
-				time-=0.5f;
+				//time-=0.5f;
+				time=0;
 				x=path.getX(pathIndex)*level.tileWidth;
 				y=path.getY(pathIndex)*level.tileHeight;
 				pathIndex++;
@@ -50,7 +59,9 @@ public class Enemy extends Entity{
 				y=interpol(path.getY(pathIndex-1),path.getY(pathIndex),time*2)*level.tileHeight;
 			}
 		}else{
-			findPlayer();
+			if(newPathTime<=0){
+				findPlayer();
+			}
 		}
 		/*if(path!=null&&pathIndex<path.getLength()){
 			System.out.println(x+" -> "+path.getX(pathIndex)*level.tileWidth);
@@ -110,8 +121,17 @@ public class Enemy extends Entity{
 		
 		AStar pathFinder = new AStar(map,heuristic);
 		
-		path=pathFinder.calcShortestPath((int)(x/level.tileWidth),(int)(y/level.tileHeight), (int)(level.player.x/level.tileWidth),(int)(level.player.y/level.tileHeight));
+		path=pathFinder.calcShortestPath((int)((x+width/2)/level.tileWidth),(int)((y+height/2)/level.tileHeight), (int)((level.player.x+level.player.width/2)/level.tileWidth),(int)((level.player.y+level.player.height/2)/level.tileHeight));
+		
+
+		pathFinder.printPath();
+		
 		pathIndex=1;
 		time=0;
+		if(path==null){ // could not find a path
+			newPathTime=2;
+		}else{
+			path.prependWayPoint(new Node((int)(x/level.tileWidth),(int)(y/level.tileHeight)));
+		}
 	}
 }

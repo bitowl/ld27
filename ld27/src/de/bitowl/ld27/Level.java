@@ -194,18 +194,6 @@ public class Level {
 			throw new RuntimeException("no connections layer found");
 		}
 		
-
-		
-
-	/*	// spawn chests
-		for(int i=0;i<10;i++){
-			entities.add(new Chest(MathUtils.random(mapWidth-1), MathUtils.random(mapHeight-1)));
-		}
-		// spawn barrels (lots of barrels!)
-		for(int i=0;i<20;i++){
-			entities.add(new Barrel(MathUtils.random(mapWidth-1), MathUtils.random(mapHeight-1)));
-		}*/
-		
 		debugrenderer=new ShapeRenderer();
 		
 		entities.sort(); // sort after their z coordinatess
@@ -213,22 +201,17 @@ public class Level {
 	
 	
 	public void update(float delta){
-		player.update(delta);
-		
-		// collision
-		
+		player.update(delta);	
 		// borders of the map
 		if(player.x<0){player.x=0;}
 		if(player.y<0){player.y=0;}
 		if(player.x>width){player.x=width;}
 		if(player.y>height){player.y=height;}
+		
+		// move entities
 		for(Bullet bullet:bullets){
-		/*	if(outsideScreen(bullet.x, bullet.y, 8, 8)){
-				bullets.removeValue(bullet, true);
-			}else{*/
-				bullet.update(delta);
-			}
-		//}
+			bullet.update(delta);
+		}
 		for(Entity entity:entities){
 			entity.update(delta);
 		}
@@ -244,20 +227,18 @@ public class Level {
 		
 		
 		for(Entity entity:entities){
-			//batch.draw(enemyT,entity.x,entity.y);
 			entity.draw(batch);
 		}
 		
 		for(Bullet bullet:bullets){
 			bullet.draw(batch);
-			//batch.draw(bulletT,bullet.x,bullet.y);
 		}
 		
 		player.draw(batch);
 		batch.end();
 
 
-		Gdx.gl.glEnable(GL10.GL_BLEND);	
+	/*	Gdx.gl.glEnable(GL10.GL_BLEND);	
 	    Gdx.gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		debugrenderer.setProjectionMatrix(camera.combined);
 		debugrenderer.begin(ShapeType.Line);
@@ -268,7 +249,7 @@ public class Level {
 		debugrenderer.setColor(0, 1, 0, 0.4f);
 		debugrenderer.rect(player.x, player.y, player.width, player.height);
 		debugrenderer.end();
-		Gdx.gl.glDisable(GL10.GL_BLEND);
+		Gdx.gl.glDisable(GL10.GL_BLEND);*/
 	}
 	
 	/**
@@ -291,6 +272,7 @@ public class Level {
 	
 	public void dispose(){
 		map.dispose();
+		debugrenderer.dispose();
 	}
 	
 	public void putPowerOnConnection(int pX,int pY,boolean pOn){

@@ -23,16 +23,16 @@ public class Mirror extends Entity {
 	public void updateTexture(){
 		switch(type){
 		case UPLEFT:
-			texture=TestScreen.mirrorUpLeftT;
+			texture=TestScreen.atlas.findRegion("mirror_lu");
 			break;
 		case UPRIGHT:
-			texture=TestScreen.mirrorUpRightT;
+			texture=TestScreen.atlas.findRegion("mirror_ru");
 			break;
 		case DOWNLEFT:
-			texture=TestScreen.mirrorDownLeftT;
+			texture=TestScreen.atlas.findRegion("mirror_ld");
 			break;
 		case DOWNRIGHT:
-			texture=TestScreen.mirrorDownRightT;
+			texture=TestScreen.atlas.findRegion("mirror_rd");
 			break;
 	}
 	}
