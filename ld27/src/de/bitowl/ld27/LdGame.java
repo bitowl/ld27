@@ -18,7 +18,6 @@ public class LdGame extends Game {
 		
 		Options.restore();
 		
-		new TestScreen(); // TODO load assets somewhere else
 		setScreen(new MainMenu());
 	}
 	

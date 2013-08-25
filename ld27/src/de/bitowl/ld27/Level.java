@@ -8,7 +8,6 @@ import com.badlogic.gdx.maps.tiled.AtlasTmxMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Array;
 
@@ -172,7 +171,7 @@ public class Level {
 							if(add!=null){
 								entities.sort();
 								entities.add(add);
-								if(add.blocking){ // TODO moving things that are blocking must check the obstacle map
+								if(add.blocking){ 
 									obstacleMap[x][y]=1;
 								}
 							}

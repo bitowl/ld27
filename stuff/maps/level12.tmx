@@ -18,7 +18,7 @@
  </layer>
  <layer name="entities" width="11" height="6" opacity="0.75">
   <data encoding="base64" compression="zlib">
-   eJzjZ0AFHAzYAbI4MwG1yIAZiU1IPTMBeXLVEgKsQAwAMWwAQQ==
+   eJxjYEAFHAzYAbI4MwG1yIAZiY1LPT8WtaSYSylgBWIAKbAAQQ==
   </data>
  </layer>
  <layer name="connections" width="11" height="6">

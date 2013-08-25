@@ -55,7 +55,7 @@ public class Enemy extends Entity{
 				pathIndex++;
 			}else{
 				
-				// TODO interpolate
+				// interpolate
 				x=interpol(path.getX(pathIndex-1),path.getX(pathIndex),time*2)*level.tileWidth + offsetX;
 				y=interpol(path.getY(pathIndex-1),path.getY(pathIndex),time*2)*level.tileHeight + offsetY;
 			}
@@ -64,30 +64,6 @@ public class Enemy extends Entity{
 				findPlayer();
 			}
 		}
-		/*if(path!=null&&pathIndex<path.getLength()){
-			System.out.println(x+" -> "+path.getX(pathIndex)*level.tileWidth);
-			if(x<path.getX(pathIndex)*level.tileWidth){
-				speedX=1;
-			}else if(x>path.getX(pathIndex)*level.tileWidth){
-				speedX=-1;
-			}else{ // TODO add a small dead zone
-				speedX=0;
-			}
-			
-			if(y<path.getY(pathIndex)*level.tileHeight){
-				speedY=1;
-			}else if(y>path.getY(pathIndex)*level.tileHeight){
-				speedY=-1;
-			}else{ // TODO add a small dead zone
-				speedY=0;
-			}
-			
-			
-				
-		}else{
-			System.err.println("NICHTS ZU LAUFEN");
-		}
-		super.update(pDelta);*/
 
 		animTime+=pDelta;
 		if(animTime>animation.animationDuration){animTime-=animation.animationDuration;}

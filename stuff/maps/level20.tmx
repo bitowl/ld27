@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="20" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="description" value="instead of an endboss we got you a really big map with many BARRELS"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="tileset.png" width="256" height="256"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJyTYWBgkEHDskAsBsRCaFiOAj46G93OgbYX3U4QVqOAj84mxV5q4lF7h7e9KliwKh3sFUPDtLZvFI/ioY4VobQUGp9edkvR2U4pKJZEYg9n/2KLXwBSdy5l
+  </data>
+ </layer>
+ <layer name="collision" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOGIkQI4WPiz0Y7OUk0i30spfWYNTe4WsvJ53sZUTDo2AUjIJRMApQAQCyxgBh
+  </data>
+ </layer>
+ <layer name="entities" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNlYEKgCAMREdaRlD6/18bgdAYs81p6IOBF8ubNg3gxYNMQqHRHs275LDiKrXEqcjZUGh0zAHkOeYg+lLWO4oR9Vk9cQ//uc+BhJXamkJh3BOuZ1t8NWt8PB3j3WufS3jG08LsZ7iVGdfX47tZPLk+1bAzUeut+UdrSHJKN1Y0fs5wLCUyRPKOpL+ovT/onJLmuAEngAMn
+  </data>
+ </layer>
+ <layer name="connections" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNk1kOgCAMRLmSuxhZ7n8q7ZeTKgFrI7xkAg2kk2Ex5mI0eTyICCAigojuVF/QtwZDwR4HInYQMYI4qexTpm6NPb+lGU+805mt8foLztzfhoS3OV1irolV9i3JaNmIXhrnnGJ78JRQ44/8SYv5toqeEu/1QW+9Nd4qsSj1KQFzSnw9qwOro6DnXxxG3A9z
+  </data>
+ </layer>
+</map>

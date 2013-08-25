@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><map height="7" orientation="orthogonal" tileheight="32" tilewidth="32" version="1.0" width="10">
  <properties><property name="atlas" value="tileset/packed.atlas"/><property name="blended tiles" value=""/>
-  <property name="description" value="spin around, spin around"/>
+  <property name="description" value="you have to be fast &amp; precise!"/>
  </properties>
  <tileset firstgid="1" name="tileset" tileheight="32" tilewidth="32">
   <image height="256" source="tileset.png" width="256"/>

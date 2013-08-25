@@ -338,24 +338,31 @@ packed
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 60
+  index: 59
 packed
   rotate: false
   xy: 512, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 61
+  index: 60
 packed
   rotate: false
   xy: 546, 36
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 62
+  index: 61
 packed
   rotate: false
   xy: 580, 70
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 62
+packed
+  rotate: false
+  xy: 546, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

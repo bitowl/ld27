@@ -21,13 +21,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.net.HttpParametersUtils;
 
 import de.bitowl.ld27.menus.CreditsMenu;
 import de.bitowl.ld27.menus.MainMenu;
 
 public class TestScreen extends AbstractScreen {
-
 
 	
 	Level level;
@@ -36,30 +34,7 @@ public class TestScreen extends AbstractScreen {
 	int spawnAmount=1; // how many enemies spawn this time
 	
 	BitmapFont font;
-	/*static Texture playerT;
-	static Texture bulletT;
-	static Texture enemyT;
-	static Texture chestT;
-	static Texture chestOpenT;
-	static Texture barrelT;
-	static Texture barrelOpenT;
-	static Texture triggerT;
-	static Texture trigger2T;
-	static Texture exitT;
-	static Texture exitOpenT;
-	static Texture wallT;
-	static Texture wallOpenT;
-	static Texture crateT;
-	static Texture crateDestroyedT;
-	static Texture pressurePlateT;
-	static Texture pressurePlateDownT;
-	static Texture pressurePlatehT;
-	static Texture pressurePlatehDownT;
-	static Texture mirrorUpLeftT;
-	static Texture mirrorUpRightT;
-	static Texture mirrorDownLeftT;
-	static Texture mirrorDownRightT;
-	static Texture spikeT;*/
+	
 	static TextureAtlas atlas;
 	
 	public int levelNr;
@@ -67,36 +42,9 @@ public class TestScreen extends AbstractScreen {
 	
 	
 	public TestScreen(int pLevel) {
-
-		//TODO handle textures somewhere else
-	/*	playerT=new Texture(Gdx.files.internal("images/player.png"));
-		bulletT=new Texture(Gdx.files.internal("images/bullet.png"));
-		enemyT=new Texture(Gdx.files.internal("images/enemy.png"));
-		chestT=new Texture(Gdx.files.internal("images/chest.png"));
-		chestOpenT=new Texture(Gdx.files.internal("images/chest_open.png"));
-		barrelT=new Texture(Gdx.files.internal("images/barrel.png"));
-		barrelOpenT=new Texture(Gdx.files.internal("images/barrel_open.png"));
-		triggerT=new Texture(Gdx.files.internal("images/trigger.png"));
-		trigger2T=new Texture(Gdx.files.internal("images/trigger_triggered.png"));
-		exitT=new Texture(Gdx.files.internal("images/exit.png"));
-		exitOpenT=new Texture(Gdx.files.internal("images/exit_open.png"));
-		wallT=new Texture(Gdx.files.internal("images/wall.png"));
-		wallOpenT=new Texture(Gdx.files.internal("images/wall_down.png"));
-		crateT=new Texture(Gdx.files.internal("images/crate.png"));
-		crateDestroyedT=new Texture(Gdx.files.internal("images/crate_destroyed.png"));
-		pressurePlateT=new Texture(Gdx.files.internal("images/pressureplate.png"));
-		pressurePlateDownT=new Texture(Gdx.files.internal("images/pressureplate_down.png"));
-		mirrorUpLeftT=new Texture(Gdx.files.internal("images/mirror_lu.png"));
-		mirrorUpRightT=new Texture(Gdx.files.internal("images/mirror_ru.png"));
-		mirrorDownLeftT=new Texture(Gdx.files.internal("images/mirror_ld.png"));
-		mirrorDownRightT=new Texture(Gdx.files.internal("images/mirror_rd.png"));
-		pressurePlatehT=new Texture(Gdx.files.internal("images/pressureplateh.png"));
-		pressurePlatehDownT=new Texture(Gdx.files.internal("images/pressureplateh_down.png"));
-		spikeT=new Texture(Gdx.files.internal("images/spikes.png"));*/
 		
 		atlas=new TextureAtlas(Gdx.files.internal("images/textures.atlas"));
 		
-		//playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		levelNr=pLevel;
 		level=new Level(levelNr);
@@ -105,12 +53,10 @@ public class TestScreen extends AbstractScreen {
 		
 		
 		Texture texture = new Texture(Gdx.files.internal("fonts/first.png"));
-		//texture.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear); 
 		texture.setFilter(TextureFilter.Linear,TextureFilter.Linear);
 		
 		font=new BitmapFont(Gdx.files.internal("fonts/first.fnt"),new TextureRegion(texture),false);
-		//font=new BitmapFont();
-		//font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
 	}
 	
 	public TestScreen(){
@@ -138,7 +84,6 @@ public class TestScreen extends AbstractScreen {
 		}
 		
 		
-		Gdx.graphics.setTitle(Gdx.graphics.getFramesPerSecond()+" fps");
 		try{
 			level.update(delta);
 		}catch(RuntimeException e){
@@ -163,13 +108,7 @@ public class TestScreen extends AbstractScreen {
 		
 		
 		// HUD
-//		camera.position.x=0;
-	//	camera.position.y=0;
-		//camera.update();
-		//batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		//Gdx.gl10.glEnable(GL10.GL_ALPHA_TEST);
-		//Gdx.gl10.glAlphaFunc(GL10.GL_GREATER, 0.45f);
 		if(spawnCounter<9){
 			font.draw(batch, (10-(int)spawnCounter)+" seconds", 0,0);
 		}else{
@@ -178,15 +117,8 @@ public class TestScreen extends AbstractScreen {
 		
 		font.draw(batch,"status: still alive",130,0);
 		
-		
-		
-		//if(level.description!=null){
-			font.draw(batch,level.description,0,level.height+font.getLineHeight());
-		//	font.draw(batch,level.description,0,level.height+font.getLineHeight());
-			
-		//}
-			//batch.flush();
-			//Gdx.gl10.glDisable(GL10.GL_ALPHA_TEST);
+		font.draw(batch,level.description,0,level.height+font.getLineHeight());
+
 		batch.end();
 		
 	}
@@ -194,32 +126,6 @@ public class TestScreen extends AbstractScreen {
 	@Override
 	public void dispose() {
 		super.dispose();
-		
-		// TODO handle textures somewhere else
-		/*playerT.dispose();
-		bulletT.dispose();
-		enemyT.dispose();
-		chestT.dispose();
-		chestOpenT.dispose();
-		barrelT.dispose();
-		barrelOpenT.dispose();
-		triggerT.dispose();
-		trigger2T.dispose();
-		exitT.dispose();
-		exitOpenT.dispose();
-		wallT.dispose();
-		wallOpenT.dispose();
-		crateT.dispose();
-		crateDestroyedT.dispose();
-		pressurePlateT.dispose();
-		pressurePlateDownT.dispose();
-		mirrorDownLeftT.dispose();
-		mirrorDownRightT.dispose();
-		mirrorUpLeftT.dispose();
-		mirrorUpRightT.dispose();
-		pressurePlatehT.dispose();
-		pressurePlatehDownT.dispose();
-		spikeT.dispose();*/
 		atlas.dispose();
 		
 		
@@ -227,9 +133,7 @@ public class TestScreen extends AbstractScreen {
 	}
 	
 	public void shoot(){
-		// TODO shoot them from center of the player?
-		// TODO put this code somewhere else where it fits better
-		Bullet bullet=new Bullet(level.player.x+17,level.player.y+17,MathUtils.cos(level.player.angle),MathUtils.sin(level.player.angle));
+		Bullet bullet=new Bullet(level.player.x+13,level.player.y+12,MathUtils.cos(level.player.angle),MathUtils.sin(level.player.angle));
 		bullet.level=level;
 		level.bullets.add(bullet);
 	}
@@ -255,7 +159,6 @@ public class TestScreen extends AbstractScreen {
 			}else if(keycode==Options.KEYBOARD_SHOOT){
 				shoot();
 			}else if(keycode==Options.KEYBOARD_BACK){
-				// TODO pause menu
 				LdGame.switchScreen(new MainMenu());
 			}
 			return false;
@@ -279,9 +182,6 @@ public class TestScreen extends AbstractScreen {
 	 *
 	 */
 	class GamepadControl extends ControllerAdapter{
-		// just inserted my values here
-		// TODO add an option screen for this
-
 
 		@Override
 		public boolean axisMoved(Controller controller, int axisIndex,
@@ -322,7 +222,7 @@ public class TestScreen extends AbstractScreen {
 			if(buttonIndex==Options.CONTROLLER_SHOOT){
 				shoot();
 			}else if(buttonIndex==Options.CONTROLLER_BACK){
-				// TODO pause menu
+				// TODO pause menu  what for? there is no loss in 10 seconds :P
 				LdGame.switchScreen(new MainMenu());
 			}
 			return false;
@@ -333,7 +233,7 @@ public class TestScreen extends AbstractScreen {
 		levelNr++;
 		
 		if(levelNr>Options.LEVEL_COUNT){
-			// TODO win message
+			// TODO win message NOPE. 10 seconds credits have to be enough :P
 			LdGame.switchScreen(new CreditsMenu());
 			throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P
 		}
