@@ -1,5 +1,8 @@
 package de.bitowl.ld27;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import de.bitowl.ld27.astar.AStar;
 import de.bitowl.ld27.astar.AStarHeuristic;
 import de.bitowl.ld27.astar.AreaMap;
@@ -12,6 +15,10 @@ public class Enemy extends Entity{
 	int pathIndex;
 	
 	float time;
+	
+	Animation animation;
+	float animTime;
+	
 	public Enemy(float pX,float pY){
 		z=3;
 		
@@ -20,12 +27,12 @@ public class Enemy extends Entity{
 		width=32;
 		height=32;
 		damageOnPlayer=1;
-		texture=TestScreen.enemyT;
 		collidable=true;
 		blocking=true;
 		
 		
 		findPlayer();
+		animation=new Animation(0.2f, TestScreen.atlas.findRegions("enemy"));
 	}
 	@Override
 	public void update(float pDelta) {
@@ -69,8 +76,14 @@ public class Enemy extends Entity{
 			System.err.println("NICHTS ZU LAUFEN");
 		}
 		super.update(pDelta);*/
+
+		animTime+=pDelta;
+		if(animTime>animation.animationDuration){animTime-=animation.animationDuration;}
 	}
-	
+	@Override
+	public void draw(SpriteBatch batch) {
+		batch.draw(animation.getKeyFrame(animTime),x-offsetX,y-offsetY);
+	}
 	
 	public float interpol(float v0,float v1,float delta){ // catch dat bad guy!
 		return v0+(v1-v0)*delta;

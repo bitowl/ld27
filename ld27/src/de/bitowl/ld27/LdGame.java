@@ -18,7 +18,7 @@ public class LdGame extends Game {
 	public void create() {
 		current=this;
 		new TestScreen(); // TODO load assets somewhere else
-		setScreen(new CreditsMenu());
+		setScreen(new MainMenu());
 	}
 	
 	

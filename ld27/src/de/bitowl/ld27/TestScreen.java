@@ -4,6 +4,7 @@ package de.bitowl.ld27;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.Controllers;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
+import de.bitowl.ld27.menus.CreditsMenu;
 import de.bitowl.ld27.menus.MainMenu;
 import de.bitowl.ld27.menus.MenuScreen;
 
@@ -56,7 +58,7 @@ public class TestScreen extends AbstractScreen {
 	
 	public int levelNr;
 	
-	public TestScreen() {
+	public TestScreen(int pLevel) {
 
 		//TODO handle textures somewhere else
 		playerT=new Texture(Gdx.files.internal("images/player.png"));
@@ -88,7 +90,7 @@ public class TestScreen extends AbstractScreen {
 		
 		//playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		levelNr=0;
+		levelNr=pLevel;
 		level=new Level(levelNr);
 		Gdx.input.setInputProcessor(new KeyboardControl());
 		Controllers.addListener(new GamepadControl());
@@ -102,6 +104,9 @@ public class TestScreen extends AbstractScreen {
 		//font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 	
+	public TestScreen(){
+		this(0);
+	}
 	@Override
 	public void render(float delta) {
 		super.render(delta);
@@ -314,6 +319,17 @@ public class TestScreen extends AbstractScreen {
 
 	public void nextLevel() {
 		levelNr++;
+		
+		if(levelNr>Options.LEVEL_COUNT){
+			// TODO win message
+			LdGame.switchScreen(new CreditsMenu());
+			return;
+		}
+		
+		Preferences prefs=Gdx.app.getPreferences("level");
+		prefs.putBoolean("lvl"+levelNr, true);
+		prefs.flush();
+		
 		level=new Level(levelNr);
 		spawnCounter=0;
 		throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P

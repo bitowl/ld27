@@ -2,6 +2,7 @@ package de.bitowl.ld27.menus;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -14,6 +15,11 @@ public class MenuScreen extends AbstractScreen {
 	Stage stage;
 	Skin skin;
 	Table table;
+	
+	static float red;
+	static float green;
+	static float blue;
+	static float colorTimer=10;
 	public MenuScreen() {
 		stage=new Stage();
 		//stage.setCamera(camera);
@@ -34,8 +40,15 @@ public class MenuScreen extends AbstractScreen {
 	}
 	@Override
 	public void render(float delta) {
+		colorTimer+=delta;
+		if(colorTimer>10){
+			red=MathUtils.random();
+			green=MathUtils.random();
+			blue=MathUtils.random();
+			colorTimer-=10;
+		}
 	//	super.render(delta);
-		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClearColor(red,green,blue,1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		stage.act(delta);
 		stage.draw();
