@@ -3,7 +3,6 @@ package de.bitowl.ld27;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
@@ -18,7 +17,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 import de.bitowl.ld27.menus.CreditsMenu;
 import de.bitowl.ld27.menus.MainMenu;
-import de.bitowl.ld27.menus.MenuScreen;
 
 public class TestScreen extends AbstractScreen {
 

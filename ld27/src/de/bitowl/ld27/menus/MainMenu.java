@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.bitowl.ld27.LdGame;
-import de.bitowl.ld27.TestScreen;
 
 public class MainMenu extends MenuScreen {
 	Label title;

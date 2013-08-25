@@ -18,7 +18,7 @@ public class LevelSelectMenu extends MenuScreen{
 		
 		table.add(new Label("select level: ",skin));
 		
-		for(int i=1;i<Options.LEVEL_COUNT;i++){
+		for(int i=1;i<=Options.LEVEL_COUNT;i++){
 			TextButton lvl=new TextButton(""+i,skin);
 			if(i==1||prefs.getBoolean("lvl"+i,false)){ // the first level is always enabled
 				lvl.addListener(new SelectLevelListener(i));
@@ -27,7 +27,6 @@ public class LevelSelectMenu extends MenuScreen{
 				lvl.setColor(0.2f,0.2f,0.2f,1);
 				
 			}
-			/*lvl.*/
 			table.add(lvl).width(40).height(40).pad(8);
 			if(i%10==0){
 				table.row();

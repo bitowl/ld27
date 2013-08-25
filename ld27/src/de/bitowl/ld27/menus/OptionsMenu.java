@@ -8,7 +8,6 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -39,18 +38,23 @@ public class OptionsMenu extends MenuScreen{
 		controllerButtons=new HashMap<OptionKeys, TextButton>();
 		
 		
+		table.add(new Label("",skin));
+		table.add(new Label("keyboard",skin));
+		table.add(new Label("controller",skin)).row();
+		
+		
 		Label upL=new Label("up",skin);
 		table.add(upL);
 		
 		TextButton upK=new TextButton(Options.KEYBOARD_UP+"",skin);
 		upK.addListener(new KeyboardBinder(OptionKeys.UP));
 		keyboardButtons.put(OptionKeys.UP, upK);
-		table.add(upK);
+		table.add(upK).width(50).height(30);
 		
-		TextButton upC=new TextButton(Options.HORIZONTAL_AXIS_POS+" "+(Options.HORIZONTAL_AXIS_POS_V?"+":"-"),skin);
+		TextButton upC=new TextButton(Options.HORIZONTAL_AXIS_POS+" "+(Options.VERTICAL_AXIS_POS_V?"+":"-"),skin);
 		upC.addListener(new ControllerBinder(OptionKeys.UP));
 		controllerButtons.put(OptionKeys.UP, upC);
-		table.add(upC);
+		table.add(upC).width(50).height(30);
 		
 		table.row();
 		
@@ -61,12 +65,12 @@ public class OptionsMenu extends MenuScreen{
 		TextButton downK=new TextButton(Options.KEYBOARD_DOWN+"",skin);
 		downK.addListener(new KeyboardBinder(OptionKeys.DOWN));
 		keyboardButtons.put(OptionKeys.DOWN, downK);
-		table.add(downK);
+		table.add(downK).width(50).height(30);
 		
-		TextButton downC=new TextButton(Options.HORIZONTAL_AXIS_NEG+" "+(Options.HORIZONTAL_AXIS_NEG_V?"+":"-"),skin);
+		TextButton downC=new TextButton(Options.HORIZONTAL_AXIS_NEG+" "+(Options.VERTICAL_AXIS_NEG_V?"+":"-"),skin);
 		downC.addListener(new ControllerBinder(OptionKeys.DOWN));
 		controllerButtons.put(OptionKeys.DOWN, downC);
-		table.add(downC);
+		table.add(downC).width(50).height(30);
 		
 		table.row();
 		
@@ -77,12 +81,12 @@ public class OptionsMenu extends MenuScreen{
 		TextButton leftK=new TextButton(Options.KEYBOARD_LEFT+"",skin);
 		leftK.addListener(new KeyboardBinder(OptionKeys.LEFT));
 		keyboardButtons.put(OptionKeys.LEFT, leftK);
-		table.add(leftK);
+		table.add(leftK).width(50).height(30);
 		
-		TextButton leftC=new TextButton(Options.VERTICAL_AXIS_NEG+" "+(Options.VERTICAL_AXIS_NEG_V?"+":"-"),skin);
+		TextButton leftC=new TextButton(Options.VERTICAL_AXIS_NEG+" "+(Options.HORIZONTAL_AXIS_NEG_V?"+":"-"),skin);
 		leftC.addListener(new ControllerBinder(OptionKeys.LEFT));
 		controllerButtons.put(OptionKeys.LEFT, leftC);
-		table.add(leftC);
+		table.add(leftC).width(50).height(30);
 		
 		table.row();
 		
@@ -93,12 +97,12 @@ public class OptionsMenu extends MenuScreen{
 		TextButton rightK=new TextButton(Options.KEYBOARD_RIGHT+"",skin);
 		rightK.addListener(new KeyboardBinder(OptionKeys.RIGHT));
 		keyboardButtons.put(OptionKeys.RIGHT, rightK);
-		table.add(rightK);
+		table.add(rightK).width(50).height(30);
 		
-		TextButton rightC=new TextButton(Options.VERTICAL_AXIS_POS+" "+(Options.VERTICAL_AXIS_POS_V?"+":"-"),skin);
+		TextButton rightC=new TextButton(Options.VERTICAL_AXIS_POS+" "+(Options.HORIZONTAL_AXIS_POS_V?"+":"-"),skin);
 		rightC.addListener(new ControllerBinder(OptionKeys.RIGHT));
 		controllerButtons.put(OptionKeys.RIGHT, rightC);
-		table.add(rightC);
+		table.add(rightC).width(50).height(30);
 		
 		table.row();
 		
@@ -109,12 +113,12 @@ public class OptionsMenu extends MenuScreen{
 		TextButton shootK=new TextButton(Options.KEYBOARD_SHOOT+"",skin);
 		shootK.addListener(new KeyboardBinder(OptionKeys.SHOOT));
 		keyboardButtons.put(OptionKeys.SHOOT, shootK);
-		table.add(shootK);
+		table.add(shootK).width(50).height(30);
 		
 		TextButton shootC=new TextButton(Options.CONTROLLER_SHOOT+"",skin);
 		shootC.addListener(new ControllerBinder(OptionKeys.SHOOT));
 		controllerButtons.put(OptionKeys.SHOOT, shootC);
-		table.add(shootC);
+		table.add(shootC).width(50).height(30);
 		
 		table.row();
 		
@@ -125,12 +129,12 @@ public class OptionsMenu extends MenuScreen{
 		TextButton backK=new TextButton(Options.KEYBOARD_BACK+"",skin);
 		backK.addListener(new KeyboardBinder(OptionKeys.BACK));
 		keyboardButtons.put(OptionKeys.BACK, backK);
-		table.add(backK);
+		table.add(backK).width(50).height(30);
 		
 		TextButton backC=new TextButton(Options.CONTROLLER_BACK+"",skin);
 		backC.addListener(new ControllerBinder(OptionKeys.BACK));
 		controllerButtons.put(OptionKeys.BACK, backC);
-		table.add(backC);
+		table.add(backC).width(50).height(30);
 		
 		table.row().pad(8);
 		
@@ -146,7 +150,6 @@ public class OptionsMenu extends MenuScreen{
 		table.add(back.pad(7));
 		
 		Gdx.input.setInputProcessor(new InputMultiplexer(stage,new KeyboardListener()));
-		
 		
 	}
 	

@@ -36,7 +36,7 @@ public class CreditsMenu extends MenuScreen {
 		
 		
 		
-		table.addAction(Actions.moveTo(0, -40));
+		table.addAction(Actions.moveTo(0, -400));
 		table.addAction(Actions.sequence(Actions.moveTo(0, 400,10f),
 				new Action() {
 					

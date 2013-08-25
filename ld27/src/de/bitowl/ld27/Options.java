@@ -1,12 +1,11 @@
 package de.bitowl.ld27;
 
-import com.badlogic.gdx.Preferences;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Preferences;
 
 public class Options {
-	public static final int LEVEL_COUNT=8;
+	public static final int LEVEL_COUNT=10;
 	
 	public static int KEYBOARD_UP=Keys.UP;
 	public static int KEYBOARD_DOWN=Keys.DOWN;
