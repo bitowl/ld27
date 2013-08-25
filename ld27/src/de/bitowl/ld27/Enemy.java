@@ -13,6 +13,8 @@ public class Enemy extends Entity{
 	
 	float time;
 	public Enemy(float pX,float pY){
+		z=3;
+		
 		x=pX*level.tileWidth;
 		y=pY*level.tileHeight;
 		width=32;
@@ -74,6 +76,10 @@ public class Enemy extends Entity{
 		return v0+(v1-v0)*delta;
 	}
 	
+	 @Override
+	public void hitByPlayer(boolean pX) {
+		level.restart();
+	}
 	@Override
 	public void hitByBullet() {
 		kill();

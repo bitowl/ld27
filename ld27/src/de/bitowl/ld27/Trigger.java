@@ -9,12 +9,16 @@ public class Trigger extends Entity {
 	float cooldown;
 
 	public Trigger(int pX, int pY) {
-		x=pX*level.tileWidth;y=pY*level.tileHeight;
-		width=32;
-		height=32;
+		tileX=pX;tileY=pY;
+		offsetX=6;
+		offsetY=2;
+		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
+		width=22;
+		height=27;
 		collidable=true;
 		blocking=true;
 		texture=TestScreen.triggerT;
+		sendsPower=true;
 	}
 	@Override
 	public void hitByPlayer(boolean pX) {	

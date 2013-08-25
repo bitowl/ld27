@@ -3,9 +3,12 @@ package de.bitowl.ld27;
 public class Chest extends Entity {
 	boolean open;
 	public Chest(float pX,float pY){
-		x=pX*level.tileWidth;y=pY*level.tileHeight;
-		width=32;
-		height=32;
+		tileX=(int)pX;tileY=(int)pY;
+		offsetX=1;
+		offsetY=1;
+		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
+		width=28;
+		height=25;
 		texture=TestScreen.chestT;
 		collidable=true;
 		blocking=true;

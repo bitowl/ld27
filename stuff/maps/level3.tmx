@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="3" height="10" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="description" value="guess you knew what you do"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="tileset.png" width="256" height="256"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="3" height="10">
+  <data encoding="base64" compression="zlib">
+   eJwTYmBgEBoADACDQAId
+  </data>
+ </layer>
+ <layer name="collision" width="3" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgYAAAAeAAB
+  </data>
+ </layer>
+ <layer name="entities" width="3" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYEAFrAzEAzYkjA5YCOgFAAbwABw=
+  </data>
+ </layer>
+ <layer name="connections" width="3" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYEAFhgzEA0MkjE0OHwAAOqgA9g==
+  </data>
+ </layer>
+</map>

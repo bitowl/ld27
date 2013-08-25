@@ -18,6 +18,8 @@ public class Bullet extends Entity{
 	float lastMirrorCooldown;
 	
 	public Bullet(float pX,float pY,float pSpeedX,float pSpeedY){
+		z=0;
+		
 		x=pX;
 		y=pY;
 		speedX=pSpeedX;

@@ -5,11 +5,15 @@ public class PressurePlate extends Entity {
 	boolean downThisFrame;
 	boolean downByBarrel;
 	public PressurePlate(float pX,float pY){
-		x=pX*level.tileWidth;y=pY*level.tileHeight;
-		width=32;
-		height=32;
+		tileX=(int)pX;tileY=(int)pY;
+		offsetX=1;
+		offsetY=0;
+		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
+		width=31;
+		height=12;
 		texture=TestScreen.pressurePlateT;
 		collidable=true;
+		sendsPower=true;
 	}
 	
 	@Override

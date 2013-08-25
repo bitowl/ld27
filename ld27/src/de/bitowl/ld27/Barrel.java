@@ -4,9 +4,13 @@ public class Barrel extends Entity{
 	boolean open;
 	PressurePlate standingOn;
 	public Barrel(float pX,float pY){
-		x=pX*level.tileWidth;y=pY*level.tileHeight;
-		width=32;
-		height=32;
+		tileX=(int)pX;tileY=(int)pY;
+		z=1;
+		offsetX=3;
+		offsetY=1;
+		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
+		width=24;
+		height=31;
 		texture=TestScreen.barrelT;
 		collidable=true;
 		blocking=true;

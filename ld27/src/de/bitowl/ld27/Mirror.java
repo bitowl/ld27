@@ -11,9 +11,12 @@ public class Mirror extends Entity {
 	
 	int type;
 	public Mirror(int pX,int pY,int pType){
-		x=pX*level.tileWidth;y=pY*level.tileHeight;
-		width=32;
-		height=32;
+		tileX=(int)pX;tileY=(int)pY;
+		offsetX=3;
+		offsetY=2;
+		x=pX*level.tileWidth+offsetX;y=pY*level.tileHeight+offsetY;
+		width=27;
+		height=27;
 		collidable=true;
 		blocking=true;
 		type=pType;

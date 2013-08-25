@@ -6,11 +6,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Entity {
+public class Entity implements Comparable<Entity>{
+	
+	int z=1000; // default is faaar back
+	
 	float x;
 	float y;
 	int width;
 	int height;
+	
+	int offsetX;
+	int offsetY;
 	
 	float speedX;
 	float speedY;
@@ -25,6 +31,18 @@ public class Entity {
 	float newX;
 	float newY;
 	
+	
+	/*
+	 * for search of the connection
+	 */
+	int tileX;
+	int tileY;
+	
+	/**
+	 * if this entity sends power (true) or might recieve power (false)
+	 */
+	boolean sendsPower;
+	boolean powerState; // the power state of powersending entities
 	
 	/*
 	 * only true for the player
@@ -44,6 +62,7 @@ public class Entity {
 	
 	public Entity(){
 		level=Level.current;
+		
 	}
 	
 	public Rectangle getRectangle(){
@@ -273,7 +292,7 @@ public class Entity {
 	
 	
 	public void draw(SpriteBatch batch){
-		batch.draw(texture,x,y);
+		batch.draw(texture,x-offsetX,y-offsetY);
 	}
 	
 	
@@ -332,6 +351,23 @@ public class Entity {
 	 * @param pOn
 	 */
 	public void powerConnection(boolean pOn){
+		powerState=pOn;
 		level.putPowerOnConnection((int)(x/level.tileWidth), (int)(y/level.tileHeight), pOn);
+	}
+
+	
+	
+	@Override
+	/**
+	 * the smaller the z the later it should be rendered
+	 */
+	public int compareTo(Entity o) {
+		if(z<o.z){
+			return 1;
+		}else if(z>o.z){
+			return -1;
+		}else{
+			return 0;
+		}
 	}
 }

@@ -6,9 +6,12 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
 public class TestScreen extends AbstractScreen {
@@ -39,11 +42,16 @@ public class TestScreen extends AbstractScreen {
 	static Texture crateDestroyedT;
 	static Texture pressurePlateT;
 	static Texture pressurePlateDownT;
+	static Texture pressurePlatehT;
+	static Texture pressurePlatehDownT;
 	static Texture mirrorUpLeftT;
 	static Texture mirrorUpRightT;
 	static Texture mirrorDownLeftT;
 	static Texture mirrorDownRightT;
+	static Texture spikeT;
+	static TextureAtlas atlas;
 	
+	public int levelNr;
 	
 	public TestScreen() {
 
@@ -69,15 +77,27 @@ public class TestScreen extends AbstractScreen {
 		mirrorUpRightT=new Texture(Gdx.files.internal("images/mirror_ru.png"));
 		mirrorDownLeftT=new Texture(Gdx.files.internal("images/mirror_ld.png"));
 		mirrorDownRightT=new Texture(Gdx.files.internal("images/mirror_rd.png"));
+		pressurePlatehT=new Texture(Gdx.files.internal("images/pressureplateh.png"));
+		pressurePlatehDownT=new Texture(Gdx.files.internal("images/pressureplateh_down.png"));
+		spikeT=new Texture(Gdx.files.internal("images/spikes.png"));
 		
-		playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		atlas=new TextureAtlas(Gdx.files.internal("images/textures.atlas"));
 		
-		level=new Level();
+		//playerT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		levelNr=0;
+		level=new Level(levelNr);
 		
 		Gdx.input.setInputProcessor(new KeyboardControl());
 		Controllers.addListener(new GamepadControl());
 		
-		font=new BitmapFont();
+		Texture texture = new Texture(Gdx.files.internal("fonts/first.png"));
+		//texture.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear); 
+		texture.setFilter(TextureFilter.Linear,TextureFilter.Linear);
+		
+		font=new BitmapFont(Gdx.files.internal("fonts/first.fnt"),new TextureRegion(texture),false);
+		//font=new BitmapFont();
+		//font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 
 	}
@@ -93,15 +113,23 @@ public class TestScreen extends AbstractScreen {
 			int x;
 			int y;
 			do{
-			x=MathUtils.random(level.mapWidth);
-			y=MathUtils.random(level.mapHeight);
+			x=MathUtils.random(level.mapWidth-1);
+			y=MathUtils.random(level.mapHeight-1);
 			}while(level.collisionLayer.getCell(x, y)!=null&&level.collisionLayer.getCell(x, y).getTile().getId()!=0);// search for a free space
 			level.spawnEnemy(x,y);
 		}
 		
 		
 		Gdx.graphics.setTitle(Gdx.graphics.getFramesPerSecond()+" fps");
-		level.update(delta);
+		try{
+			level.update(delta);
+		}catch(RuntimeException e){
+			if(!e.getMessage().equals("interrupted by level change")){
+				throw e;
+			}
+			// do not render now, switching levels
+			return;
+		}
 
 		// "scroll" with the player :P
 		camera.position.x=level.player.x;
@@ -122,13 +150,25 @@ public class TestScreen extends AbstractScreen {
 		//camera.update();
 		//batch.setProjectionMatrix(camera.combined);
 		batch.begin();
+		//Gdx.gl10.glEnable(GL10.GL_ALPHA_TEST);
+		//Gdx.gl10.glAlphaFunc(GL10.GL_GREATER, 0.45f);
 		if(spawnCounter<9){
 			font.draw(batch, (10-(int)spawnCounter)+" seconds", 0,0);
 		}else{
 			font.draw(batch, (10-(int)spawnCounter)+" second", 0,0);
 		}
 		
-		font.draw(batch,"life: "+level.player.life,100,0);
+		font.draw(batch,"status: still alive",130,0);
+		
+		
+		
+		//if(level.description!=null){
+			font.draw(batch,level.description,0,level.height+font.getLineHeight());
+		//	font.draw(batch,level.description,0,level.height+font.getLineHeight());
+			
+		//}
+			//batch.flush();
+			//Gdx.gl10.glDisable(GL10.GL_ALPHA_TEST);
 		batch.end();
 		
 	}
@@ -159,6 +199,9 @@ public class TestScreen extends AbstractScreen {
 		mirrorDownRightT.dispose();
 		mirrorUpLeftT.dispose();
 		mirrorUpRightT.dispose();
+		pressurePlatehT.dispose();
+		pressurePlatehDownT.dispose();
+		spikeT.dispose();
 		
 		
 		level.dispose();
@@ -274,6 +317,19 @@ public class TestScreen extends AbstractScreen {
 			}
 			return false;
 		}
+	}
+
+	public void nextLevel() {
+		levelNr++;
+		level=new Level(levelNr);
+		spawnCounter=0;
+		throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P
+	}
+
+	public void restartLevel() {
+		level=new Level(levelNr);
+		spawnCounter=0;
+		throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P		
 	}
 	
 	

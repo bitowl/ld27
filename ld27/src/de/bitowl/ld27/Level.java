@@ -1,11 +1,8 @@
 package de.bitowl.ld27;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -15,7 +12,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -57,7 +53,9 @@ public class Level {
 
 	public int[][] obstacleMap;
 	
-	public Level(){
+	String description; // "title" of the level
+	
+	public Level(int pLevel){
 		current=this;
 		
 		
@@ -74,13 +72,18 @@ public class Level {
 		
 		
 		// load a test map
-		map=new TmxMapLoader().load("maps/testmap.tmx");
+		map=new TmxMapLoader().load("maps/level"+pLevel+".tmx");
+		
+		description=(String) map.getProperties().get("description");
+		if(description==null){
+			description="[TODO] this level does not have a name";
+		}
 		// map.getTileSets().getTile(1).getTextureRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		renderer=new OrthogonalTiledMapRenderer(map);
 		
 		for(MapLayer layer:map.getLayers()){
 			if(layer.getName().equals("collision")){
-				//layer.setVisible(false);
+				layer.setVisible(false);
 				collisionLayer=(TiledMapTileLayer)layer;
 				
 				mapWidth=collisionLayer.getWidth();
@@ -91,11 +94,11 @@ public class Level {
 				tileHeight=(int)collisionLayer.getTileHeight();
 				
 				// create obstacle map
-				obstacleMap=new int[mapHeight][mapWidth];
+				obstacleMap=new int[mapWidth][mapHeight];
 				for(int y=0;y<mapHeight;y++){
 					for(int x=0;x<mapWidth;x++){
 						if(collisionLayer.getCell(x, y)!=null){
-							obstacleMap[y][x]=collisionLayer.getCell(x, y).getTile().getId();
+							obstacleMap[x][y]=collisionLayer.getCell(x, y).getTile().getId();
 						}
 					}
 				}
@@ -139,6 +142,7 @@ public class Level {
 									
 									
 								case 10:
+		
 									Mirror mirrorul=new Mirror(x,y,Mirror.UPLEFT);
 									add=mirrorul;
 									break;
@@ -154,11 +158,24 @@ public class Level {
 									Mirror mirrordr=new Mirror(x,y,Mirror.DOWNRIGHT);
 									add=mirrordr;
 									break;
+								case 14:
+									HumanPressurePlate plateh=new HumanPressurePlate(x, y);
+									add=plateh;
+									break;
+								case 15:
+									Spike spike=new Spike(x, y);
+									add=spike;
+									break;
+								case 16:
+									AntiWall antiwall=new AntiWall(x,y);
+									add=antiwall;
+									break;
 							}
 							if(add!=null){
+								entities.sort();
 								entities.add(add);
 								if(add.blocking){ // TODO moving things that are blocking must check the obstacle map
-									obstacleMap[y][x]=1;
+									obstacleMap[x][y]=1;
 								}
 							}
 						}
@@ -166,6 +183,7 @@ public class Level {
 				}
 			}else if(layer.getName().equals("connections")){
 				connectionsLayer=(TiledMapTileLayer)layer;
+				layer.setVisible(false);
 			}
 			
 		}
@@ -189,6 +207,8 @@ public class Level {
 		}*/
 		
 		debugrenderer=new ShapeRenderer();
+		
+		entities.sort(); // sort after their z coordinatess
 	}
 	
 	
@@ -212,7 +232,7 @@ public class Level {
 		for(Entity entity:entities){
 			entity.update(delta);
 		}
-
+		
 	}
 	
 	public void render(OrthographicCamera camera,SpriteBatch batch){
@@ -284,16 +304,25 @@ public class Level {
 		int color=connectionsLayer.getCell(pX, pY).getTile().getId();
 		System.out.println("found connection: "+color);
 		
+		Array<Entity> powerFrom=new Array<Entity>();
+		Array<Entity> powerTo=new Array<Entity>();
+		
 		// find all other entities that are powered by this connection
 		for(int x=0;x<mapWidth;x++){
 			for(int y=0;y<mapHeight;y++){
 				if(connectionsLayer.getCell(x,y)!=null){
-					if(connectionsLayer.getCell(x,y).getTile().getId()==color){
+					if((x!=pX||y!=pY) &&connectionsLayer.getCell(x,y).getTile().getId()==color){
 						System.out.println("connectionpoint at "+x+","+y);
+						
 						// find the entity, that is here
-						for(Entity entity:entities){
-							if(entity.x==x*tileWidth&&entity.y==y*tileHeight){
-								entity.powerByConnection(pOn);
+						for(int i=0;i<entities.size;i++){
+							Entity entity=entities.get(i);
+							if(entity.tileX==x&&entity.tileY==y){
+								if(entity.sendsPower){
+									powerFrom.add(entity);
+								}else{
+									powerTo.add(entity);
+								}
 								break;
 							}
 						}
@@ -302,5 +331,29 @@ public class Level {
 				}
 			}
 		}
+		
+		System.err.println("from: "+powerFrom.size+" to:"+powerTo.size);
+		
+		boolean sendPower=true;
+		// only send this event if all the other powersenders are on
+		for(Entity entity:powerFrom){
+			System.out.println("power: "+entity.powerState);
+			if(entity.powerState==false){
+				sendPower=false;
+				break;
+			}
+		}
+		System.err.println("send power: "+sendPower);
+		if(sendPower){
+			// yay, we can send the event
+			for(Entity entity:powerTo){
+				entity.powerByConnection(pOn);
+			}
+		}
+	}
+
+
+	public void restart() {
+		((TestScreen)LdGame.current.getScreen()).restartLevel();		
 	}
 }
