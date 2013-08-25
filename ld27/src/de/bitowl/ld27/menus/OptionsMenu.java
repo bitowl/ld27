@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.Controllers;
@@ -138,6 +139,36 @@ public class OptionsMenu extends MenuScreen{
 		
 		table.row().pad(8);
 		
+		
+		TextButton reset=new TextButton("reset",skin);
+		reset.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Preferences prefs=Gdx.app.getPreferences("level");
+				for(int i=0;i<=Options.LEVEL_COUNT;i++){
+					prefs.putBoolean("lvl"+i, false);
+				}
+				prefs.flush();
+			}
+		});
+		
+		table.add(reset);
+		
+		TextButton cheat=new TextButton("unlock all",skin);
+		cheat.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Preferences prefs=Gdx.app.getPreferences("level");
+				for(int i=0;i<=Options.LEVEL_COUNT;i++){
+					prefs.putBoolean("lvl"+i, true);
+				}
+				prefs.flush();
+			}
+		});
+		
+		table.add(cheat);
+		
+		table.row().pad(8);
 		
 		TextButton back=new TextButton("back",skin);
 		back.addListener(new ClickListener(){@Override

@@ -352,7 +352,7 @@ public class TestScreen extends AbstractScreen {
 	public void restartLevel() {
 		level=new Level(levelNr);
 		spawnCounter=0;
-		spawnAmount++;
+		spawnAmount=1;
 		levelTime=0;
 		throw new RuntimeException("interrupted by level change"); // I know you don't do this like this, but it's easy and works :P		
 	}

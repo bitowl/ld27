@@ -24,10 +24,12 @@ public class Enemy extends Entity{
 	public Enemy(float pX,float pY){
 		z=3;
 		
-		x=pX*level.tileWidth;
-		y=pY*level.tileHeight;
-		width=32;
-		height=32;
+		offsetX=2;
+		offsetY=6;
+		x=pX*level.tileWidth+offsetX;
+		y=pY*level.tileHeight+offsetY;
+		width=28;
+		height=20;
 		damageOnPlayer=1;
 		collidable=true;
 		blocking=true;
